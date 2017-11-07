@@ -2,12 +2,12 @@
  * Target-Tek (BYU Capstone Team 19) Accelerometer Calibration Prototype Code
  * Our accelerometer needs to be calibrated! We're going to do that by sticking it on
  * a rotating platform, and taking a number of readings equally spaced around a circle.
- * Averaging those readings together will allow us 
+ * Averaging those readings together will allow us to establish a good normal vector.
  */
 
 #include <Stepper.h> // Stepper motor library.
 
-#define ERROR_TOLERANCE 200 // Leeway in the accelerometer reading. Accelerometer outputs are from 0 to 1023.
+#define ERROR_TOLERANCE 20 // Leeway in the accelerometer reading. Accelerometer outputs are from 0 to 1023.
 #define ACCELEROMOTER_ZERO 512 // 0g is in the middle of the accelerometer's +-3g range.
 #define NUMBER_OF_READINGS 8 // Take 8 readings at 45 degree increments.
 #define SETTLING_TIME_DELAY 1000 // Wait 200 ms after arriving at a position before taking a reading.
@@ -19,7 +19,7 @@ uint16_t x, y, z, x_golden, y_golden, z_golden; // Declare x, y, and z variables
 uint16_t count; // Number of readings we've taken so far.
 uint16_t x_readings[NUMBER_OF_READINGS], y_readings[NUMBER_OF_READINGS], z_readings[NUMBER_OF_READINGS]; // Declare arrays to hold readings to be averaged.
 
-Stepper stepper_motor(STEPS_PER_FULL_ROTATION, 6, 9, 10, 11); // Initialize stepper motor on PWM pins 6, 9, 10, and 11.
+Stepper stepper_motor(STEPS_PER_FULL_ROTATION, 8, 9, 10, 11); // Initialize stepper motor on PWM pins 6, 9, 10, and 11.
 
 enum state_t {init_st, read_st, rotate_st, math_st, final_st} state;
 
@@ -87,7 +87,7 @@ void loop() {
       if(count < NUMBER_OF_READINGS) // If we're not done taking readings...
         state = rotate_st; // ...rotate and go take another one.
       else // If we are done taking readings...
-        state = final_st; // ...go to our demonstration mode.
+        state = math_st; // ...go to our demonstration mode.
       break;
     case rotate_st:
       state = read_st; // Take another reading.
