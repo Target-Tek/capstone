@@ -3,6 +3,10 @@ Created on Feb 7, 2018
 
 @author: Keith
 '''
+import time
+import serial
+import binascii
+
 
 #calculates the UBX checksum over payload.
 # and returns that checkSum as two bytes in
@@ -37,21 +41,62 @@ def UBX_appendChecksum(message_no_checkSum):
 # returns true if the bytes match
 def UBX_validateCheckSum(message):
     payload = message[2:-2]
-    print(payload)
     ourChkSum = UBX_genCheckSum(payload);
-#    for val in ourChkSum:
-#        print(hex(val))
     for i in range(0, 2):
         if message[i - 2] != ourChkSum[i]:
+            print('checkSum failed: ')
+            print(message)
             return False
         
     return True
 
-
+def UBX_readMsg(firstByte, serialIn):
+    msg = bytearray(firstByte)
+    for i in range(0,5):
+        nextByte = serialIn.read(1)
+        msg.append(nextByte[0])
     
+    length = msg[4] + msg[5]*256
+    for i in range(0, length):
+        nextByte = serialIn.read(1)
+        msg.append(nextByte[0])
+    
+    for i in range(0,2):
+        nextByte = serialIn.read(1)
+        msg.append(nextByte[0])
+    
+    if UBX_validateCheckSum(msg):
+        return msg;
+    else:
+        return bytearray()
+    
+def NMEA_readMsg(firstByte, serialIn):
+    msg = firstByte
+    msg = msg + serialIn.readline()
+    #checkSum for NMEA
+    return msg
 
-msgString = 'B5620600140001000000C0080000004B000000002000000000004ECD'
 
-msg = bytearray.fromhex(msgString)
-
-print (UBX_validateCheckSum(msg))   
+def readMsg(serialIn):
+    firstByte = serialIn.read(1)
+    if firstByte == b'$':
+        return NMEA_readMsg(firstByte, serialIn).decode('utf-8')
+    else:
+        ubxMsg = ''.join('{:02x}'.format(x) for x in UBX_readMsg(firstByte, serialIn))
+        return 'UBX: 0x' + ubxMsg + '\r\n'
+        
+    
+    
+ublox = serial.Serial(
+    port = 'COM4',
+    baudrate = 9600)
+UBX_config_prt = bytes.fromhex('B5620600140001000000C0080000004B000000002000000000004ECD')
+i = 0
+while(1):
+    while(ublox.in_waiting > 0):
+        print(readMsg(ublox), end='')
+              
+    ublox.write(UBX_config_prt)
+    time.sleep(1)
+    
+    #print('\n\r')
