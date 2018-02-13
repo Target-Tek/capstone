@@ -55,6 +55,7 @@ base_stn.write(MSG1230)
 print('-----reading results of RTK GPS messages-----')
 read_msgs(base_stn)
 #print(base_stn.read(base_stn.in_waiting))
+base_stn.write()
 print('-----end of script-----')
 base_stn.close()
 

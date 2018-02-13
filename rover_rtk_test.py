@@ -1,7 +1,6 @@
 import serial
 import time
 
-
 clrGGA = '$PUBX,40,GGA,0,0,0,0*5A\r\n'
 clrGLL = '$PUBX,40,GLL,0,0,0,0*5C\r\n'
 clrRMC = '$PUBX,40,RMC,0,0,0,0*47\r\n'
@@ -25,7 +24,7 @@ rover = serial.Serial('/dev/ttyACM0',9600)
 
 read_msgs(rover)
 print('-----clearing default messages-----')
-rover.write(clrGGA.encode('utf-8'))
+#rover.write(clrGGA.encode('utf-8'))
 rover.write(clrGLL.encode('utf-8'))
 rover.write(clrRMC.encode('utf-8'))
 rover.write(clrVTG.encode('utf-8'))

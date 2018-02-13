@@ -1,5 +1,3 @@
-
-
 msg = input('input hex message\n\r')
 msg = bytes.fromhex(msg)
 print(msg)
