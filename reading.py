@@ -6,7 +6,7 @@ Created on Feb 7, 2018
 import time
 import serial
 import binascii
-
+import ctypes
 
 #calculates the UBX checksum over payload.
 # and returns that checkSum as two bytes in
@@ -76,27 +76,68 @@ def NMEA_readMsg(firstByte, serialIn):
     #checkSum for NMEA
     return msg
 
+def parseUbxMsg(ubxMsg):
+    ubxMsgStr = ''.join('{:02x}'.format(x) for x in ubxMsg)
+    if ubxMsg[2] ==  1 and ubxMsg[3] == 44:
+        uTimeOfTheWeek = getUnsigned(ubxMsg[8:12], 4)
+        uDurationPassed = getUnsigned(ubxMsg[12:16], 4)
+        meanX = getSigned(ubxMsg[16:20], 4)
+        meanY = getSigned(ubxMsg[20:24], 4)
+        meanZ = getSigned(ubxMsg[24:28], 4)
+        meanXHP = getSigned(ubxMsg[28:29], 1)
+        meanYHP = getSigned(ubxMsg[29:30], 1)
+        meanZHP = getSigned(ubxMsg[30:31], 1)
+        meanAcc = getUnsigned(ubxMsg[32:36], 4)
+        posObs = getUnsigned(ubxMsg[36:40], 4)
+        validSurvey = getUnsigned(ubxMsg[40:41], 1)
+        activeSurvey = getUnsigned(ubxMsg[41:42], 1)
+        SVN_interpreted = "UBX-NAV-SVIN: " + ubxMsgStr + "\n\r" \
+            + "Time of Week: " + str(uTimeOfTheWeek) + "\n\r" \
+            + "Suverying for: " + str(uDurationPassed) + "\n\r" \
+            + "ECEF position in m: (" + str((meanX / 100.0) + (meanXHP / 10000.0)) + "," \
+            + str((meanY / 100.0) + (meanYHP / 10000.0)) + "," \
+            + str((meanZ / 100.0) + (meanZHP / 10000.0)) + ")\n\r" \
+            + "Accuracy in m: " + str(meanAcc / 10000.0) + "\n\r" \
+            + "Sample count: " + str(posObs) + "\n\r" \
+            + "SVIN valid?: " + str(True if validSurvey else False) + "\n\r" \
+            + "SVIN active?: " + str(True if activeSurvey else False) + "\n\r" \
+            + "\n\r"
+        return SVN_interpreted
+    else:
+        return 'UBX: 0x' + ubxMsgStr + '\r\n'
+
+def getUnsigned(val, length):
+    retVal = 0;
+    for x in range(0, length):
+        retVal = (retVal << 8) + val[x]
+    return retVal
+
+def getSigned(val, length):
+    asUnsigned = getUnsigned(val, length);
+    return ctypes.c_long(asUnsigned).value
 
 def readMsg(serialIn):
     firstByte = serialIn.read(1)
     if firstByte == b'$':
         return NMEA_readMsg(firstByte, serialIn).decode('utf-8')
     else:
-        ubxMsg = ''.join('{:02x}'.format(x) for x in UBX_readMsg(firstByte, serialIn))
-        return 'UBX: 0x' + ubxMsg + '\r\n'
+        ubxMsg = UBX_readMsg(firstByte, serialIn)
+        return parseUbxMsg(ubxMsg)
         
     
     
-ublox = serial.Serial(
-    port = 'COM4',
-    baudrate = 9600)
+#ublox = serial.Serial(
+#    port = 'COM4',
+#    baudrate = 9600)
+UBX_NAV_SVN_msg =  bytes.fromhex('b562012c28000000000050c3000000000000000000000000000000000000000000000000000000000000000000778e')
 UBX_config_prt = bytes.fromhex('B5620600140001000000C0080000004B000000002000000000004ECD')
-i = 0
-while(1):
-    while(ublox.in_waiting > 0):
-        print(readMsg(ublox), end='')
+print(parseUbxMsg(UBX_NAV_SVN_msg))
+#i = 0
+#while(1):
+#    while(ublox.in_waiting > 0):
+#        print(readMsg(ublox), end='')
               
-    ublox.write(UBX_config_prt)
-    time.sleep(1)
+#    ublox.write(UBX_config_prt)
+#    time.sleep(1)
     
     #print('\n\r')
