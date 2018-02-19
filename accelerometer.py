@@ -7,9 +7,11 @@
 
 # Requires Python 3.4 or later
 
+# IMPORTANT: You must 'sudo raspi-config' and enable SPI before this script will work!
+
 from time import sleep # Give us access to a clock and time.sleep(seconds).
 from statistics import mean # Take averages. Requires 3.4 or later.
-import RPi.GPIO as GPIO # Give us GPIO access.
+import spidev # Import py-spidev library for SPI communications.
 
 class Accelerometer:
     # Constants for all class instances.
@@ -25,6 +27,11 @@ class Accelerometer:
         self.count = 0	# Initialize count. How many readings have we taken.
         self.x_golden, self.y_golden, self.z_golden = -1, -1, -1    # Initialize to error value.
         self.x_readings, self.y_readings, self.z_readings = [], [], []   # Initialize data vectors.
+        spi = spidev.SpiDev() # Create SPI object.
+        spi.open(0,0) # Open SPI object for communication.
+        # Default accelerometer output rate is 100 Hz, which we won't change
+        spi.max_speed_hz = 100 # Set communication rate
+        #TODO: Drive CS high!
 
     def calibrate(self):
         # TODO: reset gimbal to zero position.
@@ -32,7 +39,23 @@ class Accelerometer:
             # TODO: Rotate gimbal.
             sleep(Accelerometer.time_to_rotate_s)    # Allow time for rotation.
             sleep(Accelerometer.settling_time_delay_s)   # Allow time for device to settle.
-            # TODO: Read GPIO and append new data to lists.
+            # TODO: Read from SPI and append new data to lists.
+            # Output registers for X and Y axes are 0x32 - 0x35.
+            # First two bits are both set high, the first bit indicating a read
+            # and the second indicating a multi-byte read, so our message is 0xf2.
+            msg = 0xf2
+            msg_array = [msg, msg, msg, msg]
+            # TODO: Drive CS low!
+            data = s.xfer(msg_array) # Send data over SPI and read output.
+            # TODO: Drive CS high!
+            # Interpret bytes as numbers
+            x_read = (msg_array[1] << 8) + msg_array[0]
+            y_read = (msg_array[3] << 8) + msg_array[0]
+            # Append new data to array
+            x_readings.append(x_read)
+            y_readings.append(y_read)
+
+            # END TODO
             self.count = self.count + 1   # Increment count of how many readings have been taken.
         # Do the math and compute the averages.
         self.x_golden = mean(self.x_readings)
@@ -46,4 +69,5 @@ class Accelerometer:
         pass # TODO: give difference from level in y direction
 
     def offset(self):
-        pass # TODO: give total difference from level overall
+        # Return overall angular error from level.
+        return float(x_offset(self)**2 + y_offset(self)**2)**0.5
