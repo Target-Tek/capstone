@@ -78,7 +78,7 @@ def NMEA_readMsg(firstByte, serialIn):
 
 def parseUbxMsg(ubxMsg):
     ubxMsgStr = ''.join('{:02x}'.format(x) for x in ubxMsg)
-    if ubxMsg[2] ==  1 and ubxMsg[3] == 44:
+    if ubxMsg[2] ==  1 and ubxMsg[3] == 59:
         uTimeOfTheWeek = getUnsigned(ubxMsg[8:12], 4)
         uDurationPassed = getUnsigned(ubxMsg[12:16], 4)
         meanX = getSigned(ubxMsg[16:20], 4)
@@ -109,7 +109,7 @@ def parseUbxMsg(ubxMsg):
 def getUnsigned(val, length):
     retVal = 0;
     for x in range(0, length):
-        retVal = (retVal << 8) + val[x]
+        retVal = val[x] << (8 * x)
     return retVal
 
 def getSigned(val, length):
@@ -129,9 +129,9 @@ def readMsg(serialIn):
 #ublox = serial.Serial(
 #    port = 'COM4',
 #    baudrate = 9600)
-UBX_NAV_SVN_msg =  bytes.fromhex('b562012c28000000000050c3000000000000000000000000000000000000000000000000000000000000000000778e')
-UBX_config_prt = bytes.fromhex('B5620600140001000000C0080000004B000000002000000000004ECD')
-print(parseUbxMsg(UBX_NAV_SVN_msg))
+##UBX_NAV_SVN_msg =  bytes.fromhex('b562012c28000000000050c3000000000000000000000000000000000000000000000000000000000000000000778e')
+##UBX_config_prt = bytes.fromhex('B5620600140001000000C0080000004B000000002000000000004ECD')
+##print(parseUbxMsg(UBX_NAV_SVN_msg))
 #i = 0
 #while(1):
 #    while(ublox.in_waiting > 0):

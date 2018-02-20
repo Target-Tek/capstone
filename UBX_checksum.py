@@ -1,4 +1,4 @@
-msg = input('input hex message\n\r')
+msg = input('input hex message (don\'t include apostrophes)\n\r')
 msg = bytes.fromhex(msg)
 print(msg)
 CK_A = 0
@@ -11,6 +11,6 @@ byte_A = one_byte & CK_A
 byte_B = one_byte & CK_B
 CK_A = hex(byte_A)
 CK_B = hex(byte_B)
-print(CK_A)
-print(CK_B)
+print('CK_A = ' + CK_A)
+print('CK_B = ' + CK_B)
 

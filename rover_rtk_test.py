@@ -1,5 +1,6 @@
 import serial
 import time
+import reading
 
 clrGGA = '$PUBX,40,GGA,0,0,0,0*5A\r\n'
 clrGLL = '$PUBX,40,GLL,0,0,0,0*5C\r\n'
