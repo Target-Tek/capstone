@@ -1,6 +1,7 @@
 import serial
 import time
 import reading
+from reading import readMsg
 
 clrGGA = '$PUBX,40,GGA,0,0,0,0*5A\r\n'
 clrGLL = '$PUBX,40,GLL,0,0,0,0*5C\r\n'
@@ -25,18 +26,20 @@ rover = serial.Serial('/dev/ttyACM0',9600)
 
 read_msgs(rover)
 print('-----clearing default messages-----')
-#rover.write(clrGGA.encode('utf-8'))
+rover.write(clrGGA.encode('utf-8'))
 rover.write(clrGLL.encode('utf-8'))
 rover.write(clrRMC.encode('utf-8'))
 rover.write(clrVTG.encode('utf-8'))
 rover.write(clrGSA.encode('utf-8'))
 rover.write(clrGSV.encode('utf-8'))
-print('-----reading leftover messages-----')
-read_msgs(rover)
+##print('-----reading leftover messages-----')
+##read_msgs(rover)
 print('-----writing RTK GPS enabling messages-----')
 rover.write(CFGPRTrover)
 print('-----reading results of RTK GPS messages-----')
-read_msgs(rover)
+time.sleep(1)
+while base_stn.in_waiting > 0:
+    print(readMsg(base_stn), end='') read_msgs(rover)
 #print(base_stn.read(rover.in_waiting))
 print('-----end of script-----')
 rover.close()

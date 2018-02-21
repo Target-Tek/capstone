@@ -1,5 +1,6 @@
 import serial
 import time
+import binascii
 from reading import readMsg
 
 clrGGA = '$PUBX,40,GGA,0,0,0,0*5A\r\n'
@@ -25,33 +26,39 @@ NAVPVTpoll = 'B5 62 01 07 00 00 08 19'
 
 def read_msgs(ublox):
     i = 0
-    time.sleep(3)
+    time.sleep(1)
+    print('# of bytes to be read: ' + str(ublox.in_waiting))
     while(ublox.in_waiting > 0):
-        print('# of bytes to be read:' + str(ublox.in_waiting))
-        print('loop #' + str(i))
+##        print('# of bytes to be read:' + str(ublox.in_waiting))
+##        print('loop #' + str(i))
         i = i + 1
         print(ublox.readline())
     return
 
 def read_bytes(ublox):
-    print('in read_bytes')
+    ##print('in read_bytes')
     i = 0
     time.sleep(1)
     msglength = ublox.in_waiting
     msg = []
     while(ublox.in_waiting > 0):
         byte = ublox.read()
-        msg.append(bytes.decode('utf-8'))
+        hex_byte = binascii.hexlify(byte)
+        ascii_byte = hex_byte.decode('ascii')
+        ##print(b_hex)
+        msg.append(ascii_byte)
         #msg.insert(i,ublox.read())
         #print(ublox.read())
         i = i + 1
-    print(msg)
+    list = ''.join(msg)
+    print(list)
     return
 
 ##print('-----opening serial connection-----')
 base_stn = serial.Serial('/dev/ttyACM0',9600)
-##read_msgs(base_stn)
-##print('-----clearing default messages-----')
+print('-----reading init messages-----')
+read_msgs(base_stn)
+print('-----clearing default messages-----')
 base_stn.write(clrGGA.encode('utf-8'))
 base_stn.write(clrGLL.encode('utf-8'))
 base_stn.write(clrRMC.encode('utf-8'))
@@ -60,20 +67,25 @@ base_stn.write(clrGSA.encode('utf-8'))
 base_stn.write(clrGSV.encode('utf-8'))
 ##print('-----reading leftover messages-----')
 ##read_msgs(base_stn)
-##print('-----writing RTK GPS enabling messages-----')
+print('-----writing RTK GPS enable messages-----')
 base_stn.write(bytes.fromhex(CFGTMODE3)) #step1: SVIN
 base_stn.write(bytes.fromhex(CFGPRTbase)) #step2: RTCM3 out on UART1
 base_stn.write(bytes.fromhex(MSG1005)) #step3: Station coordinates
 base_stn.write(bytes.fromhex(MSG1077)) #GPS coordinates
 base_stn.write(bytes.fromhex(MSG1087)) #GLONASS observations
 base_stn.write(bytes.fromhex(MSG1230)) #GLONASS code-phase biases
-##print('-----reading results of RTK config messages-----')
-read_msgs(base_stn)
+##time.sleep(5)
+print('-----reading results of RTK config messages-----')
+##read_bytes(base_stn)
+time.sleep(1)
+while base_stn.in_waiting > 0:
+    print(readMsg(base_stn), end='') 
 ##print(base_stn.read(base_stn.in_waiting))
 print('-----reading results of NAVSVINpoll-----')
 i = 0
 j = 0
-while j < 3:
+##while j < 3:
+while True:
     print(str(i) + 'seconds')
     i = i + 10
     j = j + 1
