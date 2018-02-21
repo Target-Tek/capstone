@@ -38,9 +38,11 @@ print('-----writing RTK GPS enabling messages-----')
 rover.write(bytes.fromhex(CFGPRTrover))
 print('-----reading results of RTK GPS messages-----')
 time.sleep(1)
-while rover.in_waiting > 0:
-    print(readMsg(rover), end='') #read_msgs(rover)
-#print(base_stn.read(rover.in_waiting))
+while 1:
+	while rover.in_waiting > 0:
+		print(readMsg(rover), end='') #read_msgs(rover)
+	#print(base_stn.read(rover.in_waiting))
+
 print('-----end of script-----')
 rover.close()
 
