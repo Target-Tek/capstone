@@ -10,7 +10,7 @@ clrVTG = '$PUBX,40,VTG,0,0,0,0*5E\r\n'
 clrGSA = '$PUBX,40,GSA,0,0,0,0*4E\r\n'
 clrGSV = '$PUBX,40,GSV,0,0,0,0*59\r\n'
 
-CFGPRTrover = 'B5 62 06 00 01 00 00 00 C0 08 00 00 00 4B 00 00 20 00 00 00 00 00 00 00 3a 49'
+CFGPRTrover = 'B5 62 06 00 14 00 01 00 00 00 C0 08 00 00 00 4B 00 00 20 00 00 00 00 00 00 00 4E 0D'
 
 
 def read_msgs(ublox):

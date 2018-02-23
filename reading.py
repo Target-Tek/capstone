@@ -75,46 +75,106 @@ def NMEA_readMsg(firstByte, serialIn):
     msg = msg + serialIn.readline()
     #checkSum for NMEA
     return msg
+    
+def parseUbxNavDGPS(ubxMsg):
+    ubxMsgStr = ''.join('{:02x}'.format(x) for x in ubxMsg)
+    msgContent = ubxMsg[6:]
+    timeOfWeek = getTimeOfWeek(msgContent[0:4])
+    age = getSigned(msgContent[4:8], 4)
+    baseId = getSigned(msgContent[8:10], 2)
+    baseHealth = getSigned(msgContent[10:12], 2)
+    numCh = getUnsigned(msgContent[12:13], 1)
+    status = getUnsigned(msgContent[13:14], 1)
+    for x in range(0, numCh):
+        offset = 12*x
+        satID = getUnsigned(msgContent[16 + offset:17 + offset], 1)
+        flags = getSigned(msgContent[17 + offset:18 + offset], 1)
+        ageC = getUnsigned(msgContent[18 + offset: 20 + offset], 2)
+        pseudoCorrection = getUnsigned(msgContent[20 + offset: 24 + offset], 4)
+        pseudoRateCorrection = getUnsigned(msgContent[24 + offset: msgContent[28 + offset]], 4)
+    #Do something with the data
 
 def parseUbxNavSvin(ubxMsg):
     ubxMsgStr = ''.join('{:02x}'.format(x) for x in ubxMsg)
-	uTimeOfTheWeek = getUnsigned(ubxMsg[8:12], 4)
-	uDurationPassed = getUnsigned(ubxMsg[12:16], 4)
-	meanX = getSigned(ubxMsg[16:20], 4)
-	meanY = getSigned(ubxMsg[20:24], 4)
-	meanZ = getSigned(ubxMsg[24:28], 4)
-	meanXHP = getSigned(ubxMsg[28:29], 1)
-	meanYHP = getSigned(ubxMsg[29:30], 1)
-	meanZHP = getSigned(ubxMsg[30:31], 1)
-	meanAcc = getUnsigned(ubxMsg[32:36], 4)
-	posObs = getUnsigned(ubxMsg[36:40], 4)
-	validSurvey = getUnsigned(ubxMsg[40:41], 1)
-	activeSurvey = getUnsigned(ubxMsg[41:42], 1)
-	SVIN_interpreted = "UBX-NAV-SVIN: " + ubxMsgStr + "\n\r" \
-		+ "Time of Week: " + str(uTimeOfTheWeek) + "\n\r" \
-		+ "Suverying for: " + str(uDurationPassed) + "\n\r" \
-		+ "ECEF position in m: (" + str((meanX / 100.0) + (meanXHP / 10000.0)) + "," \
-		+ str((meanY / 100.0) + (meanYHP / 10000.0)) + "," \
-		+ str((meanZ / 100.0) + (meanZHP / 10000.0)) + ")\n\r" \
-		+ "Accuracy in m: " + str(meanAcc / 10000.0) + "\n\r" \
-		+ "Sample count: " + str(posObs) + "\n\r" \
-		+ "SVIN valid?: " + str(True if validSurvey else False) + "\n\r" \
-		+ "SVIN active?: " + str(True if activeSurvey else False) + "\n\r" \
-		+ "\n\r"
-	return SVIN_interpreted
-	
-	
+    msgContent = ubxMsg[6:]
+    uTimeOfTheWeek = getTimeOfWeek(msgContent[4:8])
+    uDurationPassed = getUnsigned(msgContent[8:12], 4)
+    meanX = getSigned(msgContent[12:16], 4)
+    meanY = getSigned(msgContent[16:20], 4)
+    meanZ = getSigned(msgContent[20:24], 4)
+    meanXHP = getSigned(msgContent[24:25], 1)
+    meanYHP = getSigned(msgContent[25:26], 1)
+    meanZHP = getSigned(msgContent[26:27], 1)
+    meanAcc = getUnsigned(msgContent[28:32], 4)
+    posObs = getUnsigned(msgContent[32:36], 4)
+    validSurvey = getUnsigned(msgContent[36:37], 1)
+    activeSurvey = getUnsigned(msgContent[37:38], 1)
+    SVIN_interpreted = "UBX-NAV-SVIN: " + ubxMsgStr + "\n\r" \
+        + "Time of Week: " + uTimeOfTheWeek.getFullString() + "\n\r" \
+        + "Suverying for: " + str(uDurationPassed) + "\n\r" \
+        + "ECEF position in m: (" + str((meanX / 100.0) + (meanXHP / 10000.0)) + "," \
+        + str((meanY / 100.0) + (meanYHP / 10000.0)) + "," \
+        + str((meanZ / 100.0) + (meanZHP / 10000.0)) + ")\n\r" \
+        + "Accuracy in m: " + str(meanAcc / 10000.0) + "\n\r" \
+        + "Sample count: " + str(posObs) + "\n\r" \
+        + "SVIN valid?: " + str(True if validSurvey else False) + "\n\r" \
+        + "SVIN active?: " + str(True if activeSurvey else False) + "\n\r" \
+        + "\n\r"
+    return SVIN_interpreted
+    
+    
 def parseUbxMsg(ubxMsg):
-    if ubxMsg[2] ==  1 and ubxMsg[3] == 59: # 0x01 
+    if ubxMsg[2] ==  1 and ubxMsg[3] == 59: # 0x01 , 0x3B
         return parseUbxNavSvin(ubxMsg)
     else:
-		ubxMsgStr = ''.join('{:02x}'.format(x) for x in ubxMsg)
+        ubxMsgStr = ''.join('{:02x}'.format(x) for x in ubxMsg)
         return 'UBX: 0x' + ubxMsgStr + '\r\n'
 
+class TimeOfWeek:
+    CONST_DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+    MS_IN_SEC = 1000
+    SEC_IN_DAY = 86400
+    SEC_IN_HOUR = 3600
+    SEC_IN_MINUTE = 60
+    
+    def __init__(self, milliseconds):
+        self.inMs = milliseconds
+        seconds = self.inMs // self.MS_IN_SEC;
+        print (seconds)
+        self.numDay = seconds // self.SEC_IN_DAY;
+        seconds = seconds - self.numDay * self.SEC_IN_DAY
+        self.numHour = seconds // self.SEC_IN_HOUR
+        seconds = seconds - self.numHour * self.SEC_IN_HOUR
+        self.numMin = seconds // self.SEC_IN_MINUTE
+        seconds = seconds - self.numMin * self.SEC_IN_MINUTE
+        self.numSec = seconds
+        
+    def getFullString(self):
+        day = -1
+        if self.numDay < 7 and self.numDay >= 0:
+            day = self.CONST_DAYS[self.numDay]
+        else:
+            day = "ERR_DAY"
+        
+        return "" + str(self.inMs) + "ms - " + day + " " + str(self.numHour) + ":" + str(self.numMin) + ":" + str(self.numSec)
+        
+    inMs = -1
+    numDay = -1
+    numHour = -1
+    numMin = -1
+    numSec = -1
+
+        
+def getTimeOfWeek(val):
+    inMs = getUnsigned(val[0:4], 4)
+    return TimeOfWeek(inMs)
+        
 def getUnsigned(val, length):
+    print(''.join('{:02x}'.format(x) for x in val))
     retVal = 0;
     for x in range(0, length):
-        retVal = val[x] << (8 * x)
+        nextPart = val[x] << (8*x)
+        retVal = retVal + nextPart
     return retVal
 
 def getSigned(val, length):
@@ -129,14 +189,17 @@ def readMsg(serialIn):
         ubxMsg = UBX_readMsg(firstByte, serialIn)
         return parseUbxMsg(ubxMsg)
         
-    
-    
 #ublox = serial.Serial(
 #    port = 'COM4',
 #    baudrate = 9600)
-##UBX_NAV_SVIN_msg =  bytes.fromhex('b562012c28000000000050c3000000000000000000000000000000000000000000000000000000000000000000778e')
-##UBX_config_prt = bytes.fromhex('B5620600140001000000C0080000004B000000002000000000004ECD')
-##print(parseUbxMsg(UBX_NAV_SVIN_msg))
+#CFGPRTbase_revised = 'B5 62 06 00 14 00 01 00 00 00 C0 08 00 00 00 4B 00 00 20 00 00 00 00 00 00 00'
+#CFGPRT_msg = bytes.fromhex(CFGPRTbase_revised)
+#CFGPRT_msg = UBX_appendChecksum(CFGPRT_msg)
+#print (CFGPRT_msg)
+#print (parseUbxMsg(CFGPRT_msg))
+#UBX_NAV_SVN_msg =  bytes.fromhex('b562 013b 2800 00 000000 87654321 0000000000000000000000000000000000000000000000000000000000000000778e')
+#UBX_config_prt = bytes.fromhex('B5620600140001000000C0080000004B000000002000000000004ECD')
+#print(parseUbxMsg(UBX_NAV_SVN_msg))
 #i = 0
 #while(1):
 #    while(ublox.in_waiting > 0):
