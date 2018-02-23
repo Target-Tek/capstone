@@ -4,7 +4,7 @@ from curses import wrapper
 from time import sleep
 import pigpio
 
-step_frequency = 2000	# Frequency of steps. You can change this.
+step_frequency = 4000	# Frequency of steps. You can change this.
 DIR = 20     	# Direction GPIO Pin
 STEP = 21	# Step GPIO Pin
 STEP2 = 26	# Step GPIO PIN second motor
