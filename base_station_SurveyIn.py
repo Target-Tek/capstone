@@ -10,7 +10,9 @@ from reading import readMsg
 #clrGSA = '$PUBX,40,GSA,0,0,0,0*4E\r\n'
 #clrGSV = '$PUBX,40,GSV,0,0,0,0*59\r\n'
 
-CFGTMODE3 = 'B5 62 06 71 28 00 00 00 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 2C 01 00 00 20 4E 00 00 00 00 00 00 00 00 00 00 3C 88'
+CFGTMODE3 = 'B5 62 06 71 28 00 00 01 00 00 00 00 00 00 00 00 \
+			 00 00 00 00 00 00 00 00 00 00 00 00 00 00 3C 00 \
+			 00 00 40 42 0F 00 00 00 00 00 00 00 00 00 6D E5'
 #CFGPRTbase = 'B5 62 06 00 14 00 01 00 00 00 C0 08 00 00 00 4B 00 00 00 00 20 00 00 00 00 00 4E CD'
 #MSG1005 = 'B5 62 06 01 08 00 F5 05 00 01 00 00 00 00 0A 73'
 #MSG1077 = 'B5 62 06 01 08 00 F5 4D 00 01 00 00 00 00 52 6B'
@@ -55,7 +57,7 @@ def read_bytes(ublox):
     return
 
 ##print('-----opening serial connection-----')
-base_stn = serial.Serial('/dev/ttyACM0',9600)
+base_stn = serial.Serial('COM7',9600)
 print('-----reading init messages-----')
 read_msgs(base_stn)
 #print('-----clearing default messages-----')
@@ -83,7 +85,6 @@ while base_stn.in_waiting > 0:
 ##print(base_stn.read(base_stn.in_waiting))
 print('-----reading results of NAVSVINpoll-----')
 ##while j < 3:
-start = time.time()
 while True:
     print(str(i) + 'seconds')
     base_stn.write(bytes.fromhex(NAVSVINpoll))
@@ -91,8 +92,6 @@ while True:
     while base_stn.in_waiting > 0:
         print(readMsg(base_stn), end='') 
     #print('\n\r')   
-    time.sleep(10)
-	curTime = time.time();
 	if (start - curTime) > (60*7):
 		break
 ##base_stn.write(bytes.fromhex(MSG1005poll))
