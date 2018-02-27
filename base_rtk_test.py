@@ -43,7 +43,7 @@ NAVPVTpoll = 'B5 62 01 07 00 00 08 19'
 
 def read_msgs(ublox):
     time.sleep(1)
-    print('# of bytes to be read: ' + str(ublox.in_waiting))
+    ##print('# of bytes to be read: ' + str(ublox.in_waiting))
     while(ublox.in_waiting > 0):
         print(readMsg(ublox), end = '')
     return
@@ -76,11 +76,11 @@ read_msgs(base_stn)
 ##read_msgs(base_stn)
 print('-----writing RTK GPS enable messages-----')
 base_stn.write(bytes.fromhex(CFGTMODE3_2M)) #step1: SVIN
-base_stn.write(bytes.fromhex(CFG_PRT_Base)) #step2: RTCM3 out on UART1
-base_stn.write(bytes.fromhex(MSG1005)) #step3: Station coordinates
-base_stn.write(bytes.fromhex(MSG1077)) #GPS coordinates
-base_stn.write(bytes.fromhex(MSG1087)) #GLONASS observations
-base_stn.write(bytes.fromhex(MSG1230)) #GLONASS code-phase biases
+##base_stn.write(bytes.fromhex(CFG_PRT_Base)) #step2: RTCM3 out on UART1
+##base_stn.write(bytes.fromhex(MSG1005)) #step3: Station coordinates
+##base_stn.write(bytes.fromhex(MSG1077)) #GPS coordinates
+##base_stn.write(bytes.fromhex(MSG1087)) #GLONASS observations
+##base_stn.write(bytes.fromhex(MSG1230)) #GLONASS code-phase biases
 ##time.sleep(5)
 print('-----reading results of RTK config messages-----')
 read_msgs(base_stn)
@@ -89,12 +89,12 @@ secBtwnRead = 1
 i = 0
 j = 0
 ##while j < 3:
-for x in range(0,120)
+for x in range(0,120):
     print(str(i) + 'seconds')
     i = i + secBtwnRead
     j = j + 1
     base_stn.write(bytes.fromhex(NAVSVINpoll))
-	read_msgs(base_stn)
+    read_msgs(base_stn)
     time.sleep(secBtwnRead - 1)
 ##base_stn.write(bytes.fromhex(MSG1005poll))
 ##base_stn.write(bytes.fromhex(MSG1077poll))
