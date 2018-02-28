@@ -27,8 +27,8 @@ CFG_CHECK = 'B5 62 06 71 00 00 77 6B'
 CFG_PRT_Base = 'B5 62 06 00 14 00 01 00 00 00 D0 08 00 00 00 4B \
 		  00 00 00 00 20 00 00 00 00 00 5E CD'
 
-#CFGTMODE3 = 'B5 62 06 71 28 00 00 00 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 2C 01 00 00 20 4E 00 00 00 00 00 00 00 00 00 00 3C 88'
-#CFGPRTbase = 'B5 62 06 00 14 00 01 00 00 00 C0 08 00 00 00 4B 00 00 00 00 20 00 00 00 00 00 4E CD'
+#CFGTMODE3 = 'B5 62 06 71 28 00 00 00 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 2C 01 00 00 20 4E 00 00 00 00 00 00 00 00 00 00 3C 88' #old
+#CFGPRTbase = 'B5 62 06 00 14 00 01 00 00 00 C0 08 00 00 00 4B 00 00 00 00 20 00 00 00 00 00 4E CD' # old
 MSG1005 = 'B5 62 06 01 08 00 F5 05 00 01 00 00 00 00 0A 73'
 MSG1077 = 'B5 62 06 01 08 00 F5 4D 00 01 00 00 00 00 52 6B'
 MSG1087 = 'B5 62 06 01 08 00 F5 57 00 01 00 00 00 00 5C B1'
@@ -66,12 +66,12 @@ base_stn = serial.Serial('/dev/ttyACM0',9600)
 print('-----reading init messages-----')
 read_msgs(base_stn)
 ##print('-----clearing default messages-----')
-##base_stn.write(clrGGA.encode('utf-8'))
-##base_stn.write(clrGLL.encode('utf-8'))
-##base_stn.write(clrRMC.encode('utf-8'))
-##base_stn.write(clrVTG.encode('utf-8'))
-##base_stn.write(clrGSA.encode('utf-8'))
-##base_stn.write(clrGSV.encode('utf-8'))
+base_stn.write(clrGGA.encode('utf-8'))
+base_stn.write(clrGLL.encode('utf-8'))
+base_stn.write(clrRMC.encode('utf-8'))
+base_stn.write(clrVTG.encode('utf-8'))
+base_stn.write(clrGSA.encode('utf-8'))
+base_stn.write(clrGSV.encode('utf-8'))
 ##print('-----reading leftover messages-----')
 ##read_msgs(base_stn)
 print('-----writing RTK GPS enable messages-----')
