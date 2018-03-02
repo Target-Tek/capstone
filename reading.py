@@ -174,7 +174,7 @@ class TimeOfWeek:
     def __init__(self, milliseconds):
         self.inMs = milliseconds
         seconds = self.inMs // self.MS_IN_SEC;
-        print (seconds)
+        #print (seconds)
         self.numDay = seconds // self.SEC_IN_DAY;
         seconds = seconds - self.numDay * self.SEC_IN_DAY
         self.numHour = seconds // self.SEC_IN_HOUR
@@ -204,7 +204,7 @@ def getTimeOfWeek(val):
     return TimeOfWeek(inMs)
         
 def getUnsigned(val, length):
-    print(''.join('{:02x}'.format(x) for x in val))
+    #print(''.join('{:02x}'.format(x) for x in val))
     retVal = 0;
     for x in range(0, length):
         nextPart = val[x] << (8*x)
