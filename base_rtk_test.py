@@ -75,7 +75,7 @@ base_stn.write(clrGSV.encode('utf-8'))
 ##print('-----reading leftover messages-----')
 ##read_msgs(base_stn)
 print('-----writing RTK GPS enable messages-----')
-base_stn.write(bytes.fromhex(CFGTMODE3_2M)) #step1: SVIN
+base_stn.write(bytes.fromhex(CFGTMODE3_100M)) #step1: SVIN
 ##base_stn.write(bytes.fromhex(CFG_PRT_Base)) #step2: RTCM3 out on UART1
 ##base_stn.write(bytes.fromhex(MSG1005)) #step3: Station coordinates
 ##base_stn.write(bytes.fromhex(MSG1077)) #GPS coordinates

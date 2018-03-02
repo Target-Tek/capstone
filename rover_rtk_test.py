@@ -10,17 +10,16 @@ clrVTG = '$PUBX,40,VTG,0,0,0,0*5E\r\n'
 clrGSA = '$PUBX,40,GSA,0,0,0,0*4E\r\n'
 clrGSV = '$PUBX,40,GSV,0,0,0,0*59\r\n'
 
+NAVPVTpoll = 'B5 62 01 07 00 00 08 19'
+
 #CFGPRTrover = 'B5 62 06 00 14 00 01 00 00 00 C0 08 00 00 00 4B 00 00 20 00 00 00 00 00 00 00 4E 0D'#old
-CFGPRTrover = 'B5 62 06 00 14 00 01 00 00 00 D0 08 00 00 00 4B 00 00 20 00 00 00 00 00 00 00 5E 0D'
+CFGPRTrover = 'B5 62 06 00 14 00 01 00 00 00 D0 08 00 00 00 4B 00 00 20 00 00 00 00 00 00 00 5E 0D'#new
 
 def read_msgs(ublox):
-    i = 0
     time.sleep(1)
     while(ublox.in_waiting > 0):
-        print('# of bytes to be read:' + str(ublox.in_waiting))
-        print('loop #' + str(i))
-        i = i + 1
-        print(ublox.readline())
+        #print('# of bytes to be read:' + str(ublox.in_waiting))
+        print(readMsg(ublox), end = '')       
     return
 
 rover = serial.Serial('/dev/ttyACM0',9600)
@@ -38,12 +37,17 @@ rover.write(clrGSV.encode('utf-8'))
 print('-----writing RTK GPS enabling messages-----')
 rover.write(bytes.fromhex(CFGPRTrover))
 print('-----reading results of RTK GPS messages-----')
-time.sleep(1)
-while 1:
-	while rover.in_waiting > 0:
-		print(readMsg(rover), end='') #read_msgs(rover)
-	#print(base_stn.read(rover.in_waiting))
-
+#time.sleep(1)
+secBtwnRead = 1
+i = 0
+j = 0
+for x in range(0,900):
+    print(str(i) + 'seconds')
+    i = i + secBtwnRead
+    j = j + 1
+    base_stn.write(bytes.fromhex(NAVPVTpoll))
+    read_msgs(base_stn)
+    time.sleep(secBtwnRead - 1)
 print('-----end of script-----')
 rover.close()
 
