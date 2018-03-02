@@ -13,11 +13,11 @@ from reading import readMsg
 CFGTMODE3 = 'B5 62 06 71 28 00 00 01 00 00 00 00 00 00 00 00 \
 			 00 00 00 00 00 00 00 00 00 00 00 00 00 00 3C 00 \
 			 00 00 40 42 0F 00 00 00 00 00 00 00 00 00 6D E5'
-#CFGPRTbase = 'B5 62 06 00 14 00 01 00 00 00 C0 08 00 00 00 4B 00 00 00 00 20 00 00 00 00 00 4E CD'
-#MSG1005 = 'B5 62 06 01 08 00 F5 05 00 01 00 00 00 00 0A 73'
-#MSG1077 = 'B5 62 06 01 08 00 F5 4D 00 01 00 00 00 00 52 6B'
-#MSG1087 = 'B5 62 06 01 08 00 F5 57 00 01 00 00 00 00 5C B1'
-#MSG1230 = 'B5 62 06 01 08 00 F5 E6 00 01 00 00 00 00 EB 9A'
+CFGPRTbase = 'B5 62 06 00 14 00 01 00 00 00 C0 08 00 00 00 4B 00 00 00 00 20 00 00 00 00 00 4E CD'
+MSG1005 = 'B5 62 06 01 08 00 F5 05 00 01 00 00 00 00 0A 73'
+MSG1077 = 'B5 62 06 01 08 00 F5 4D 00 01 00 00 00 00 52 6B'
+MSG1087 = 'B5 62 06 01 08 00 F5 57 00 01 00 00 00 00 5C B1'
+MSG1230 = 'B5 62 06 01 08 00 F5 E6 00 01 00 00 00 00 EB 9A'
 #MSG1005poll = 'B5 62 06 01 02 00 F5 05 03 20'
 #MSG1077poll = 'B5 62 06 01 02 00 F5 4D 4B 68'
 #MSG1087poll = 'B5 62 06 01 02 00 F5 57 55 72'
@@ -71,11 +71,11 @@ read_msgs(base_stn)
 ##read_msgs(base_stn)
 print('-----writing Survey In message-----')
 base_stn.write(bytes.fromhex(CFGTMODE3)) #step1: SVIN
-#base_stn.write(bytes.fromhex(CFGPRTbase)) #step2: RTCM3 out on UART1
-#base_stn.write(bytes.fromhex(MSG1005)) #step3: Station coordinates
-#base_stn.write(bytes.fromhex(MSG1077)) #GPS coordinates
-#base_stn.write(bytes.fromhex(MSG1087)) #GLONASS observations
-#base_stn.write(bytes.fromhex(MSG1230)) #GLONASS code-phase biases
+base_stn.write(bytes.fromhex(CFGPRTbase)) #step2: RTCM3 out on UART1
+base_stn.write(bytes.fromhex(MSG1005)) #step3: Station coordinates
+base_stn.write(bytes.fromhex(MSG1077)) #GPS coordinates
+base_stn.write(bytes.fromhex(MSG1087)) #GLONASS observations
+base_stn.write(bytes.fromhex(MSG1230)) #GLONASS code-phase biases
 ##time.sleep(5)
 print('-----reading results of RTK config messages-----')
 ##read_bytes(base_stn)
