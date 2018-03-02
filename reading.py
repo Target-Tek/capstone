@@ -109,18 +109,15 @@ def parseUbxNavSvin(ubxMsg):
     posObs = getUnsigned(msgContent[32:36], 4)
     validSurvey = getUnsigned(msgContent[36:37], 1)
     activeSurvey = getUnsigned(msgContent[37:38], 1)
-    SVIN_interpreted = "UBX-NAV-SVIN: " + ubxMsgStr + "\n\r" \
-        + "Time of Week: " + uTimeOfTheWeek.getFullString() + "\n\r" \
-        + "Suverying for: " + str(uDurationPassed) + "\n\r" \
-        + "ECEF position in m: (" + str((meanX / 100.0) + (meanXHP / 10000.0)) + "," \
-        + str((meanY / 100.0) + (meanYHP / 10000.0)) + "," \
-        + str((meanZ / 100.0) + (meanZHP / 10000.0)) + ")\n\r" \
-        + "Accuracy in m: " + str(meanAcc / 10000.0) + "\n\r" \
-        + "Sample count: " + str(posObs) + "\n\r" \
-        + "SVIN valid?: " + str(True if validSurvey else False) + "\n\r" \
-        + "SVIN active?: " + str(True if activeSurvey else False) + "\n\r" \
-        + "\n\r"
-    return SVIN_interpreted
+    x = (meanX / 100.0) + (meanXHP / 10000.0)
+    y = (meanY / 100.0) + (meanYHP / 10000.0)
+    z = (meanZ / 100.0) + (meanZHP / 10000.0)
+    acc = meanAcc / 10000.0
+
+    globals()['surveyInState'] = SurveyInStatus(ubxMsgStr, uTimeOfTheWeek, uDurationPassed, \
+                                                x, y, z, acc, posObs, validSurvey,\
+                                                activeSurvey)
+    return surveyInState.getFullString()
     
     
 def parseUbxMsg(ubxMsg):
@@ -130,6 +127,43 @@ def parseUbxMsg(ubxMsg):
         ubxMsgStr = ''.join('{:02x}'.format(x) for x in ubxMsg)
         return 'UBX: 0x' + ubxMsgStr + '\r\n'
 
+class SurveyInStatus:        
+    def __init__(self, MSG, timeOfWeek, duration, x, y, z, \
+                    accuracy, samples, valid, active):
+        self.MSG = MSG
+        self.currentTime = timeOfWeek
+        self.duration = duration
+        self.ECEFx = x
+        self.ECEFy = y
+        self.ECEFz = z
+        self.ECEFaccuracy = accuracy
+        self.samples = samples;
+        self.isValid = valid;
+        self.isActive = active;
+        
+    def getFullString(self):
+        return "UBX-NAV-SVIN: " + self.MSG + "\n\r" \
+        + "Time of Week: " + self.currentTime.getFullString() + "\n\r" \
+        + "Suverying for: " + str(self.duration) + "\n\r" \
+        + "ECEF position in m: (" + str(self.ECEFx) + "," \
+        + str(self.ECEFy) + "," \
+        + str(self.ECEFz) + ")\n\r" \
+        + "Accuracy in m: " + str(self.ECEFaccuracy) + "\n\r" \
+        + "Sample count: " + str(self.samples) + "\n\r" \
+        + "SVIN valid?: " + str(True if self.isValid else False) + "\n\r" \
+        + "SVIN active?: " + str(True if self.isActive else False) + "\n\r" \
+        + "\n\r"
+    MSG = -1
+    currentTime = -1
+    duration = -1
+    ECEFx = -1
+    ECEFy = -1
+    ECEFz = -1
+    ECEFaccuracy = -1
+    samples = -1
+    isValid = False
+    isActive = False
+        
 class TimeOfWeek:
     CONST_DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
     MS_IN_SEC = 1000
@@ -188,6 +222,10 @@ def readMsg(serialIn):
     else:
         ubxMsg = UBX_readMsg(firstByte, serialIn)
         return parseUbxMsg(ubxMsg)
+        
+        
+surveyInState = SurveyInStatus(-1, -1, -1, -1, -1, -1, -1, -1, -1, -1)
+
         
 #ublox = serial.Serial(
 #    port = 'COM4',
