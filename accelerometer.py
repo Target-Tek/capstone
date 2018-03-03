@@ -27,11 +27,20 @@ class Accelerometer:
         self.count = 0	# Initialize count. How many readings have we taken.
         self.x_golden, self.y_golden, self.z_golden = -1, -1, -1    # Initialize to error value.
         self.x_readings, self.y_readings, self.z_readings = [], [], []   # Initialize data vectors.
-        spi = spidev.SpiDev() # Create SPI object.
-        spi.open(0,0) # Open SPI object for communication.
-        # Default accelerometer output rate is 100 Hz, which we won't change
-        spi.max_speed_hz = 100 # Set communication rate
-        #TODO: Drive CS high!
+        self.spi = spidev.SpiDev() # Create SPI object.
+        self.spi.open(0,0) # Open SPI object for communication.
+        self.spi.max_speed_hz = 100000 # Set communication rate
+        self.spi.mode = 0b11 # Set CPOL/CPHA
+        self.spi.xfer([0x2D, 0x08]) # Turn on accelerometer's measurement mode.
+
+    def test(self):
+        # A test method, reading the device ID registers of the accelerometer
+        # and comparing them to known values.
+        msg = [0xC0, 0x00, 0x00, 0x00] # Message to read the three device registers.
+        received = self.spi.xfer(msg) # Communicate with accelerometer.
+        desired = [0x00, 0xAD, 0x1D, 0xCB] # This is what we should get back.
+        print('Received message: ', received)
+        print(' Desired message: ', desired)
 
     def calibrate(self):
         # TODO: reset gimbal to zero position.
@@ -42,15 +51,12 @@ class Accelerometer:
             # TODO: Read from SPI and append new data to lists.
             # Output registers for X and Y axes are 0x32 - 0x35.
             # First two bits are both set high, the first bit indicating a read
-            # and the second indicating a multi-byte read, so our message is 0xf2.
-            msg = 0xf2
-            msg_array = [msg, msg, msg, msg]
-            # TODO: Drive CS low!
-            data = s.xfer(msg_array) # Send data over SPI and read output.
-            # TODO: Drive CS high!
+            # and the second indicating a multi-byte read, so our message is 0xF2.
+            msg = [0xF2, 0x00, 0x00, 0x00, 0x00] # First byte we get back is junk.
+            data = self.spi.xfer(msg) # Send data over SPI and read output.
             # Interpret bytes as numbers
-            x_read = (msg_array[1] << 8) + msg_array[0]
-            y_read = (msg_array[3] << 8) + msg_array[0]
+            x_read = (data[2] << 8) + data[1]
+            y_read = (data[4] << 8) + data[3]
             # Append new data to array
             x_readings.append(x_read)
             y_readings.append(y_read)
@@ -61,6 +67,13 @@ class Accelerometer:
         self.x_golden = mean(self.x_readings)
         self.y_golden = mean(self.y_readings)
         self.z_golden = mean(self.z_readings)
+
+    def raw_output(self):
+        # Gives the raw accelerometer output.
+        msg = [0xF2, 0x00, 0x00, 0x00, 0x00] # Message to be sent.
+        data = self.spi.xfer(msg) # Send data over SPI and read output.
+        data = data[1:] # Throw away the first (junk) byte.
+        return data
 
     def x_offset(self):
         pass # TODO: give difference from level in x direction
