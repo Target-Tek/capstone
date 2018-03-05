@@ -93,6 +93,47 @@ def parseUbxNavDGPS(ubxMsg):
         pseudoCorrection = getUnsigned(msgContent[20 + offset: 24 + offset], 4)
         pseudoRateCorrection = getUnsigned(msgContent[24 + offset: msgContent[28 + offset]], 4)
     #Do something with the data
+    
+def parseUbxNavRelposned(ubxMsg):
+    ubxMsgStr = ''.join('{:02x}'.format(x) for x in ubxMsg)
+    msgContent = ubxMsg[6:]
+    version = getUnsigned(msgContent[0:1], 1)
+    refStationID = getUnsigned(msgContent[2:4], 2)
+    timeOfWeek = getTimeOfWeek(msgContent[4:8])
+    relPosN = getSigned(msgContent[8:12], 4)    # cm
+    relPosE = getSigned(msgContent[12:16], 4)   # cm
+    relPosD = getSigned(msgContent[16:20], 4)   # cm
+    relPosHPN = getSigned(msgContent[20:21], 1) # .1 mm
+    relPosHPE = getSigned(msgContent[21:22], 1) # .1 mm
+    relPosHPD = getSigned(msgContent[22:23], 1) # .1 mm
+    accN = getUnsigned(msgContent[24:28], 4)    # .1 mm
+    accE = getUnsigned(msgContent[28:32], 4)    # .1 mm
+    accD = getUnsigned(msgContent[32:36], 4)    # .1 mm
+    flags = getUnsigned(msgContent[36:40], 4)   # .1 mm
+    relPosN_m = (relPosN / 100.0) + (relPosHPN / 10000.0)
+    relPosE_m = (relPosE / 100.0) + (relPosHPE / 10000.0)
+    relPosD_m = (relPosD / 100.0) + (relPosHPD / 10000.0)
+    accN_meters = accN / 10000.0
+    accE_meters = accE / 10000.0
+    accD_meters = accD / 10000.0
+    gnss_ok = (flags & (1)) == 1
+    difSoln = ((flags >> 1) & 1) == 1
+    relPosValid = ((flags >> 2) & 1) == 1
+    carrSoln = ((flags >> 3) & 3)
+    isMoving = ((flags >> 5) & 1) == 1
+    refPosMiss = ((flags >> 6) & 1) == 1
+    refObsMiss = ((flags >> 7) & 1) == 1
+    
+    return "UBX-NAV-RELPOSNED " + ubxMsgStr + "\n" +\
+            "ver" + str(version) + " station " + str(refStationID) + "\n" +\
+            timeOfWeek.getFullString() + "\n" +\
+            "position: " + str(relPosN_m) + "m N +-" + str(accN_meters) + "m, "\
+            + str(relPosE_m) + "m E +-" + str(accE_meters) + "m, "\
+            + str(relPosD_m) + "m D +-" + str(accD_meters) + "m\n" +\
+            "gnssOk? " + str(gnss_ok) + " diffSoln? " + str(difSoln) + " relPosValid? "+ str(relPosValid) +"\n" +\
+            "carrSoln: " + ("No soln" if carrSoln == 0 else ("float" if (carrSoln == 1) else ("fix" if (carrSoln == 2) else "Err"))) + "\n" +\
+            "isMoving? " + str(isMoving) + " extrapRefPos? " + str(refPosMiss) + " extrapRebObs" + str(refObsMiss)
+    
 
 def parseUbxNavSvin(ubxMsg):
     ubxMsgStr = ''.join('{:02x}'.format(x) for x in ubxMsg)
@@ -123,6 +164,8 @@ def parseUbxNavSvin(ubxMsg):
 def parseUbxMsg(ubxMsg):
     if ubxMsg[2] ==  1 and ubxMsg[3] == 59: # 0x01 , 0x3B
         return parseUbxNavSvin(ubxMsg)
+    if ubxMsg[2] == 1 and ubxMsg [3] == 0x3C:
+        return parseUbxNavRelposned(ubxMsg)
     else:
         ubxMsgStr = ''.join('{:02x}'.format(x) for x in ubxMsg)
         return 'UBX: 0x' + ubxMsgStr + '\r\n'
