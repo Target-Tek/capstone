@@ -12,6 +12,7 @@
 from time import sleep # Give us access to a clock and time.sleep(seconds).
 from statistics import mean # Take averages. Requires 3.4 or later.
 import spidev # Import py-spidev library for SPI communications.
+from numpy import int8 # For converting two's complement bytes to ints
 
 class Accelerometer:
     # Constants for all class instances.
@@ -39,6 +40,7 @@ class Accelerometer:
         msg = [0xC0, 0x00, 0x00, 0x00] # Message to read the three device registers.
         received = self.spi.xfer(msg) # Communicate with accelerometer.
         desired = [0x00, 0xAD, 0x1D, 0xCB] # This is what we should get back.
+        print('First byte is junk and does not have to match.')
         print('Received message: ', received)
         print(' Desired message: ', desired)
 
@@ -48,15 +50,7 @@ class Accelerometer:
             # TODO: Rotate gimbal.
             sleep(Accelerometer.time_to_rotate_s)    # Allow time for rotation.
             sleep(Accelerometer.settling_time_delay_s)   # Allow time for device to settle.
-            # TODO: Read from SPI and append new data to lists.
-            # Output registers for X and Y axes are 0x32 - 0x35.
-            # First two bits are both set high, the first bit indicating a read
-            # and the second indicating a multi-byte read, so our message is 0xF2.
-            msg = [0xF2, 0x00, 0x00, 0x00, 0x00] # First byte we get back is junk.
-            data = self.spi.xfer(msg) # Send data over SPI and read output.
-            # Interpret bytes as numbers
-            x_read = (data[2] << 8) + data[1]
-            y_read = (data[4] << 8) + data[3]
+            [x_read, y_read] = self.raw_output() # Read accelerometer output data.
             # Append new data to array
             x_readings.append(x_read)
             y_readings.append(y_read)
@@ -69,14 +63,23 @@ class Accelerometer:
         self.z_golden = mean(self.z_readings)
 
     def raw_output(self):
-        # Gives the raw accelerometer output.
+        # Gives the raw accelerometer output, interpreted as numbers.
+        # Output registers for X and Y axes are 0x32 - 0x35.
+        # First two bits are both set high, the first bit indicating a read
+        # and the second indicating a multi-byte read, so our message is 0xF2.
         msg = [0xF2, 0x00, 0x00, 0x00, 0x00] # Message to be sent.
         data = self.spi.xfer(msg) # Send data over SPI and read output.
-        data = data[1:] # Throw away the first (junk) byte.
-        return data
+        output = [] # Initialize output data array
+        # Interpret bytes as numbers
+        output.append((int8(data[2]) << 8) + int8(data[1])) # Concatenate bytes
+        output.append((int8(data[4]) << 8) + int8(data[3])) # Concatanate bytes
+        return output
 
     def x_offset(self):
-        pass # TODO: give difference from level in x direction
+        [x_read, y_read] = self.raw_output() # Read accelerometer data.
+        x_read = x_read - self.x_golden
+        y_read = y_read - self.y_golden
+        
 
     def y_offset(self):
         pass # TODO: give difference from level in y direction
