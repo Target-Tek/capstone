@@ -132,7 +132,7 @@ def parseUbxNavRelposned(ubxMsg):
             + str(relPosD_m) + "m D +-" + str(accD_meters) + "m\n" +\
             "gnssOk? " + str(gnss_ok) + " diffSoln? " + str(difSoln) + " relPosValid? "+ str(relPosValid) +"\n" +\
             "carrSoln: " + ("No soln" if carrSoln == 0 else ("float" if (carrSoln == 1) else ("fix" if (carrSoln == 2) else "Err"))) + "\n" +\
-            "isMoving? " + str(isMoving) + " extrapRefPos? " + str(refPosMiss) + " extrapRebObs" + str(refObsMiss)
+            "isMoving? " + str(isMoving) + " extrapRefPos? " + str(refPosMiss) + " extrapRebObs? " + str(refObsMiss)
     
 
 def parseUbxNavSvin(ubxMsg):
