@@ -11,6 +11,7 @@ clrGSA = '$PUBX,40,GSA,0,0,0,0*4E\r\n'
 clrGSV = '$PUBX,40,GSV,0,0,0,0*59\r\n'
 
 NAVPVTpoll = 'B5 62 01 07 00 00 08 19'
+NAVRELPOSNEDpoll = 'B5 62 01 3C 00 00 3D B8'
 
 #CFGPRTrover = 'B5 62 06 00 14 00 01 00 00 00 C0 08 00 00 00 4B 00 00 20 00 00 00 00 00 00 00 4E 0D'#old
 CFGPRTrover = 'B5 62 06 00 14 00 01 00 00 00 D0 08 00 00 00 4B 00 00 20 00 00 00 00 00 00 00 5E 0D'#new
@@ -41,14 +42,13 @@ print('-----reading results of RTK GPS messages-----')
 secBtwnRead = 1
 i = 0
 j = 0
-for x in range(0,900):
+for x in range(0,2700):
     print(str(i) + 'seconds')
     i = i + secBtwnRead
     j = j + 1
-    base_stn.write(bytes.fromhex(NAVPVTpoll))
-    read_msgs(base_stn)
+    rover.write(bytes.fromhex(NAVPVTpoll))
+    rover.write(bytes.fromhex(NAVRELPOSNEDpoll))
+    read_msgs(rover)
     time.sleep(secBtwnRead - 1)
 print('-----end of script-----')
 rover.close()
-
-
