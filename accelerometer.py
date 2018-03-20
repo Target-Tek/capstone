@@ -14,13 +14,21 @@ from statistics import mean # Take averages. Requires 3.4 or later.
 from spidev import * # Import py-spidev library for SPI communications.
 from numpy import int8 # For converting two's complement bytes to ints
 from math import pi # Used for converting from radians to degrees.
+import RPi.GPIO as GPIO # Used for GPIO and driving the stepper 
 
 class Accelerometer:
     # Constants for all class instances.
     number_of_readings = 8	# Take 8 readings at 45 degree increments.
     settling_time_delay_s = .500	# Wait this many ms for device to settle before taking a reading.
-    time_to_rotate_s = 2.000	# Allow this long for gimbal to rotate before taking the next reading.
     lsb_per_g = 1024 # Least significant bits per g, used to interpret output.
+    # Stepper motor interface parameters
+    step_frequency = 4000
+    delay = .00005 # Delay parameter for driving steppers.
+    DIR = 20
+    STEP = 21
+    STEP2 = 26
+    DIR2 = 12
+    ENABLE = 16
 
     # Constructor. Initializes things to zero.
     def __init__(self):
@@ -34,6 +42,10 @@ class Accelerometer:
         self.spi.xfer([0x2C, 0x06]) # Set lowest output data rate for minimum noise.
         self.spi.xfer([0x31, 0x80]) # Set full resolution mode, 1024 LSB/g.
         self.spi.xfer([0x2D, 0x08]) # Turn on accelerometer's measurement mode.
+        # Stepper code
+        self.pi = pi()
+        self.pi.set_mode(DIR, pigpio.OUTPUT)
+        self.pi.set_mode(STEP, pigpio.OUTPUT)
 
     def test(self):
         # A test method, reading the device ID registers of the accelerometer
@@ -45,18 +57,21 @@ class Accelerometer:
         print('Received message: ', received)
         print(' Desired message: ', desired)
 
+    def eighth_rotation(self):
+        for x in range(25000): # One eighth of a full rotation.
+            GPIO.output(STEP,GPIO.HIGH)
+            sleep(delay)
+            GPIO.output(STEP,GPIO.LOW)
+            sleep(delay)
+
     def calibrate(self):
-        # TODO: reset gimbal to zero position.
         while self.count < 8:
-            # TODO: Rotate gimbal.
-            sleep(Accelerometer.time_to_rotate_s)    # Allow time for rotation.
-            sleep(Accelerometer.settling_time_delay_s)   # Allow time for device to settle.
+            delay(settling_time_delay_s)
             [x_read, y_read] = self.raw_output() # Read accelerometer output data.
             # Append new data to array
-            x_readings.append(x_read)
-            y_readings.append(y_read)
-
-            # END TODO
+            x_readings.append(x_read) # Save reading to array.
+            y_readings.append(y_read) # Save reading to array.
+            self.eighth_rotation() # Rotate to position for next reading.
             self.count = self.count + 1   # Increment count of how many readings have been taken.
         # Do the math and compute the averages.
         self.x_golden = mean(self.x_readings)
