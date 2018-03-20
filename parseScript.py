@@ -1,6 +1,6 @@
 from reading import parseUbxMsg
 
-with open('RTK test 3_7_18') as f:
+with open('RTK test 3_19_18') as f:
     for line in f:
         #print(line[0:6])
         if (line[0:5] == "UBX: "):

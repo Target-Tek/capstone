@@ -1,7 +1,7 @@
 import re
 
 
-with open('RTK test 3_7_18 interpretted') as f:
+with open('RTK test 3_20_18') as f:
     regex = re.compile('m\s[NED]\s\+\-|m,\s|m\n') #'m [NED] +-|m,\s', 
     for line in f:
         if (line[0:10] == "position: "):
