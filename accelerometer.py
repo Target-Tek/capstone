@@ -26,6 +26,7 @@ class Accelerometer:
     delay = .00005 # Delay parameter for driving steppers.
     DIR = 20
     STEP = 21
+    CW = 0
     STEP2 = 26
     DIR2 = 12
     ENABLE = 16
@@ -43,9 +44,10 @@ class Accelerometer:
         self.spi.xfer([0x31, 0x80]) # Set full resolution mode, 1024 LSB/g.
         self.spi.xfer([0x2D, 0x08]) # Turn on accelerometer's measurement mode.
         # Stepper code
-        self.pi = pi()
-        self.pi.set_mode(DIR, pigpio.OUTPUT)
-        self.pi.set_mode(STEP, pigpio.OUTPUT)
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(Accelerometer.DIR,GPIO.OUT)
+        GPIO.setup(Accelerometer.STEP,GPIO.OUT)
+        GPIO.output(Accelerometer.DIR,Accelerometer.CW)
 
     def test(self):
         # A test method, reading the device ID registers of the accelerometer
@@ -59,18 +61,18 @@ class Accelerometer:
 
     def eighth_rotation(self):
         for x in range(25000): # One eighth of a full rotation.
-            GPIO.output(STEP,GPIO.HIGH)
-            sleep(delay)
-            GPIO.output(STEP,GPIO.LOW)
-            sleep(delay)
+            GPIO.output(Accelerometer.STEP,GPIO.HIGH)
+            sleep(Accelerometer.delay)
+            GPIO.output(Accelerometer.STEP,GPIO.LOW)
+            sleep(Accelerometer.delay)
 
     def calibrate(self):
         while self.count < 8:
-            delay(settling_time_delay_s)
+            sleep(Accelerometer.settling_time_delay_s)
             [x_read, y_read] = self.raw_output() # Read accelerometer output data.
             # Append new data to array
-            x_readings.append(x_read) # Save reading to array.
-            y_readings.append(y_read) # Save reading to array.
+            self.x_readings.append(x_read) # Save reading to array.
+            self.y_readings.append(y_read) # Save reading to array.
             self.eighth_rotation() # Rotate to position for next reading.
             self.count = self.count + 1   # Increment count of how many readings have been taken.
         # Do the math and compute the averages.
