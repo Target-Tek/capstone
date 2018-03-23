@@ -6,6 +6,7 @@
 # 1/18/2018
 
 # Requires Python 3.4 or later
+# For the ADXL313
 
 # IMPORTANT: You must 'sudo raspi-config' and enable SPI before this script will work!
 
@@ -40,8 +41,8 @@ class Accelerometer:
         self.spi.open(0,0) # Open SPI object for communication.
         self.spi.max_speed_hz = 100000 # Set communication rate
         self.spi.mode = 0b11 # Set CPOL/CPHA
-        self.spi.xfer([0x2C, 0x06]) # Set lowest output data rate for minimum noise.
-        self.spi.xfer([0x31, 0x80]) # Set full resolution mode, 1024 LSB/g.
+#        self.spi.xfer([0x2C, 0x06]) # Set lowest output data rate for minimum noise.
+#        self.spi.xfer([0x31, 0x80]) # Set full resolution mode, 1024 LSB/g.
         self.spi.xfer([0x2D, 0x08]) # Turn on accelerometer's measurement mode.
         # Stepper code
         GPIO.setmode(GPIO.BCM)
