@@ -24,10 +24,12 @@ class Accelerometer:
     lsb_per_g = 1024 # Least significant bits per g, used to interpret output.
     # Stepper motor interface parameters
     step_frequency = 4000
+    degrees_per_step = 0.002
     delay = .00005 # Delay parameter for driving steppers.
     DIR = 20
     STEP = 21
     CW = 0
+    CCW = 1
     STEP2 = 26
     DIR2 = 12
     ENABLE = 16
@@ -48,7 +50,6 @@ class Accelerometer:
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(Accelerometer.DIR,GPIO.OUT)
         GPIO.setup(Accelerometer.STEP,GPIO.OUT)
-        GPIO.output(Accelerometer.DIR,Accelerometer.CW)
 
     def test(self):
         # A test method, reading the device ID registers of the accelerometer
@@ -62,7 +63,20 @@ class Accelerometer:
 
     def eighth_rotation(self):
         for x in range(25000): # One eighth of a full rotation.
+            GPIO.output(Accelerometer.DIR,Accelerometer.CW)
             GPIO.output(Accelerometer.STEP,GPIO.HIGH)
+            sleep(Accelerometer.delay)
+            GPIO.output(Accelerometer.STEP,GPIO.LOW)
+            sleep(Accelerometer.delay)
+
+    def self_level(self):
+        [x_offset, _] = self.offset() # Read angular offset in degrees
+        if x_offset > 0:
+            GPIO.output(Accelerometer.DIR2,Accelerometer.CW)
+        else:
+            GPIO.output(Accelerometer.DIR2,Accelerometer.CCW)
+        for i in range(x_offset / Accelerometer.degrees_per_step):
+            GPIO.output(Accelerometer.STEP2,GPIO.HIGH)
             sleep(Accelerometer.delay)
             GPIO.output(Accelerometer.STEP,GPIO.LOW)
             sleep(Accelerometer.delay)
@@ -80,6 +94,8 @@ class Accelerometer:
         self.x_golden = mean(self.x_readings)
         self.y_golden = mean(self.y_readings)
         self.z_golden = mean(self.z_readings)
+        # Level the platform.
+        self.self_level()
 
     def raw_output(self):
         # Gives the raw accelerometer output, interpreted as numbers.
