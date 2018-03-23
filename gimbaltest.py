@@ -17,452 +17,395 @@ GPIO.setup(STEP,GPIO.OUT)
 GPIO.setup(DIR2,GPIO.OUT)
 GPIO.setup(STEP2,GPIO.OUT)
 
-for x in range(25000):
+for x in range(10000):
 	GPIO.output(DIR,CW)
 	GPIO.output(STEP,GPIO.HIGH)
 	sleep(delay)
 	GPIO.output(STEP,GPIO.LOW)
 	sleep(delay)
 sleep(delay2)
-for x in range(25000):
+for x in range(10000):
 	GPIO.output(DIR,CCW)
 	GPIO.output(STEP,GPIO.HIGH)
 	sleep(delay)
 	GPIO.output(STEP,GPIO.LOW)
 	sleep(delay)
 sleep(delay2)
-for x in range(25000):
+for x in range(10000):
 	GPIO.output(DIR2,CW)
 	GPIO.output(STEP2,GPIO.HIGH)
 	sleep(delay)
 	GPIO.output(STEP2,GPIO.LOW)
 	sleep(delay)
 sleep(delay2)
-for x in range(25000):
+for x in range(10000):
 	GPIO.output(DIR2,CCW)
 	GPIO.output(STEP2,GPIO.HIGH)
 	sleep(delay)
 	GPIO.output(STEP2,GPIO.LOW)
 	sleep(delay)
 sleep(delay2)
-for x in range(25000):
+for x in range(10000):
 	GPIO.output(DIR,CW)
 	GPIO.output(STEP,GPIO.HIGH)
 	sleep(delay)
 	GPIO.output(STEP,GPIO.LOW)
 	sleep(delay)
 sleep(delay2)
-for x in range(25000):
+for x in range(10000):
 	GPIO.output(DIR,CCW)
 	GPIO.output(STEP,GPIO.HIGH)
 	sleep(delay)
 	GPIO.output(STEP,GPIO.LOW)
 	sleep(delay)
 sleep(delay2)
-for x in range(25000):
+for x in range(10000):
 	GPIO.output(DIR2,CW)
 	GPIO.output(STEP2,GPIO.HIGH)
 	sleep(delay)
 	GPIO.output(STEP2,GPIO.LOW)
 	sleep(delay)
 sleep(delay2)
-for x in range(25000):
+for x in range(10000):
 	GPIO.output(DIR2,CCW)
 	GPIO.output(STEP2,GPIO.HIGH)
 	sleep(delay)
 	GPIO.output(STEP2,GPIO.LOW)
 	sleep(delay)
 sleep(delay2)
-for x in range(25000):
+for x in range(10000):
 	GPIO.output(DIR,CW)
 	GPIO.output(STEP,GPIO.HIGH)
 	sleep(delay)
 	GPIO.output(STEP,GPIO.LOW)
 	sleep(delay)
 sleep(delay2)
-for x in range(25000):
+for x in range(10000):
 	GPIO.output(DIR,CCW)
 	GPIO.output(STEP,GPIO.HIGH)
 	sleep(delay)
 	GPIO.output(STEP,GPIO.LOW)
 	sleep(delay)
 sleep(delay2)
-for x in range(25000):
+for x in range(10000):
 	GPIO.output(DIR2,CW)
 	GPIO.output(STEP2,GPIO.HIGH)
 	sleep(delay)
 	GPIO.output(STEP2,GPIO.LOW)
 	sleep(delay)
 sleep(delay2)
-for x in range(25000):
+for x in range(10000):
 	GPIO.output(DIR2,CCW)
 	GPIO.output(STEP2,GPIO.HIGH)
 	sleep(delay)
 	GPIO.output(STEP2,GPIO.LOW)
 	sleep(delay)
 sleep(delay2)
-for x in range(25000):
+for x in range(10000):
 	GPIO.output(DIR,CW)
 	GPIO.output(STEP,GPIO.HIGH)
 	sleep(delay)
 	GPIO.output(STEP,GPIO.LOW)
 	sleep(delay)
 sleep(delay2)
-for x in range(25000):
+for x in range(10000):
 	GPIO.output(DIR,CCW)
 	GPIO.output(STEP,GPIO.HIGH)
 	sleep(delay)
 	GPIO.output(STEP,GPIO.LOW)
 	sleep(delay)
 sleep(delay2)
-for x in range(25000):
+for x in range(10000):
 	GPIO.output(DIR2,CW)
 	GPIO.output(STEP2,GPIO.HIGH)
 	sleep(delay)
 	GPIO.output(STEP2,GPIO.LOW)
 	sleep(delay)
 sleep(delay2)
-for x in range(25000):
+for x in range(10000):
 	GPIO.output(DIR2,CCW)
 	GPIO.output(STEP2,GPIO.HIGH)
 	sleep(delay)
 	GPIO.output(STEP2,GPIO.LOW)
 	sleep(delay)
 sleep(delay2)
-for x in range(25000):
+for x in range(10000):
 	GPIO.output(DIR,CW)
 	GPIO.output(STEP,GPIO.HIGH)
 	sleep(delay)
 	GPIO.output(STEP,GPIO.LOW)
 	sleep(delay)
 sleep(delay2)
-for x in range(25000):
+for x in range(10000):
 	GPIO.output(DIR,CCW)
 	GPIO.output(STEP,GPIO.HIGH)
 	sleep(delay)
 	GPIO.output(STEP,GPIO.LOW)
 	sleep(delay)
 sleep(delay2)
-for x in range(25000):
+for x in range(10000):
 	GPIO.output(DIR2,CW)
 	GPIO.output(STEP2,GPIO.HIGH)
 	sleep(delay)
 	GPIO.output(STEP2,GPIO.LOW)
 	sleep(delay)
 sleep(delay2)
-for x in range(25000):
+for x in range(10000):
 	GPIO.output(DIR2,CCW)
 	GPIO.output(STEP2,GPIO.HIGH)
 	sleep(delay)
 	GPIO.output(STEP2,GPIO.LOW)
 	sleep(delay)
 sleep(delay2)
-for x in range(25000):
+for x in range(10000):
 	GPIO.output(DIR,CW)
 	GPIO.output(STEP,GPIO.HIGH)
 	sleep(delay)
 	GPIO.output(STEP,GPIO.LOW)
 	sleep(delay)
 sleep(delay2)
-for x in range(25000):
+for x in range(10000):
 	GPIO.output(DIR,CCW)
 	GPIO.output(STEP,GPIO.HIGH)
 	sleep(delay)
 	GPIO.output(STEP,GPIO.LOW)
 	sleep(delay)
 sleep(delay2)
-for x in range(25000):
+for x in range(10000):
 	GPIO.output(DIR2,CW)
 	GPIO.output(STEP2,GPIO.HIGH)
 	sleep(delay)
 	GPIO.output(STEP2,GPIO.LOW)
 	sleep(delay)
 sleep(delay2)
-for x in range(25000):
+for x in range(10000):
 	GPIO.output(DIR2,CCW)
 	GPIO.output(STEP2,GPIO.HIGH)
 	sleep(delay)
 	GPIO.output(STEP2,GPIO.LOW)
 	sleep(delay)
 sleep(delay2)
-for x in range(25000):
+for x in range(10000):
 	GPIO.output(DIR,CW)
 	GPIO.output(STEP,GPIO.HIGH)
 	sleep(delay)
 	GPIO.output(STEP,GPIO.LOW)
 	sleep(delay)
 sleep(delay2)
-for x in range(25000):
+for x in range(10000):
 	GPIO.output(DIR,CCW)
 	GPIO.output(STEP,GPIO.HIGH)
 	sleep(delay)
 	GPIO.output(STEP,GPIO.LOW)
 	sleep(delay)
 sleep(delay2)
-for x in range(25000):
+for x in range(10000):
 	GPIO.output(DIR2,CW)
 	GPIO.output(STEP2,GPIO.HIGH)
 	sleep(delay)
 	GPIO.output(STEP2,GPIO.LOW)
 	sleep(delay)
 sleep(delay2)
-for x in range(25000):
+for x in range(10000):
 	GPIO.output(DIR2,CCW)
 	GPIO.output(STEP2,GPIO.HIGH)
 	sleep(delay)
 	GPIO.output(STEP2,GPIO.LOW)
 	sleep(delay)
 sleep(delay2)
-for x in range(25000):
+for x in range(10000):
 	GPIO.output(DIR,CW)
 	GPIO.output(STEP,GPIO.HIGH)
 	sleep(delay)
 	GPIO.output(STEP,GPIO.LOW)
 	sleep(delay)
 sleep(delay2)
-for x in range(25000):
+for x in range(10000):
 	GPIO.output(DIR,CCW)
 	GPIO.output(STEP,GPIO.HIGH)
 	sleep(delay)
 	GPIO.output(STEP,GPIO.LOW)
 	sleep(delay)
 sleep(delay2)
-for x in range(25000):
+for x in range(10000):
 	GPIO.output(DIR2,CW)
 	GPIO.output(STEP2,GPIO.HIGH)
 	sleep(delay)
 	GPIO.output(STEP2,GPIO.LOW)
 	sleep(delay)
 sleep(delay2)
-for x in range(25000):
+for x in range(10000):
 	GPIO.output(DIR2,CCW)
 	GPIO.output(STEP2,GPIO.HIGH)
 	sleep(delay)
 	GPIO.output(STEP2,GPIO.LOW)
 	sleep(delay)
 sleep(delay2)
-for x in range(25000):
+for x in range(10000):
 	GPIO.output(DIR,CW)
 	GPIO.output(STEP,GPIO.HIGH)
 	sleep(delay)
 	GPIO.output(STEP,GPIO.LOW)
 	sleep(delay)
 sleep(delay2)
-for x in range(25000):
+for x in range(10000):
 	GPIO.output(DIR,CCW)
 	GPIO.output(STEP,GPIO.HIGH)
 	sleep(delay)
 	GPIO.output(STEP,GPIO.LOW)
 	sleep(delay)
 sleep(delay2)
-for x in range(25000):
+for x in range(10000):
 	GPIO.output(DIR2,CW)
 	GPIO.output(STEP2,GPIO.HIGH)
 	sleep(delay)
 	GPIO.output(STEP2,GPIO.LOW)
 	sleep(delay)
 sleep(delay2)
-for x in range(25000):
+for x in range(10000):
 	GPIO.output(DIR2,CCW)
 	GPIO.output(STEP2,GPIO.HIGH)
 	sleep(delay)
 	GPIO.output(STEP2,GPIO.LOW)
 	sleep(delay)
 sleep(delay2)
-for x in range(25000):
+for x in range(10000):
 	GPIO.output(DIR,CW)
 	GPIO.output(STEP,GPIO.HIGH)
 	sleep(delay)
 	GPIO.output(STEP,GPIO.LOW)
 	sleep(delay)
 sleep(delay2)
-for x in range(25000):
+for x in range(10000):
 	GPIO.output(DIR,CCW)
 	GPIO.output(STEP,GPIO.HIGH)
 	sleep(delay)
 	GPIO.output(STEP,GPIO.LOW)
 	sleep(delay)
 sleep(delay2)
-for x in range(25000):
+for x in range(10000):
 	GPIO.output(DIR2,CW)
 	GPIO.output(STEP2,GPIO.HIGH)
 	sleep(delay)
 	GPIO.output(STEP2,GPIO.LOW)
 	sleep(delay)
 sleep(delay2)
-for x in range(25000):
+for x in range(10000):
 	GPIO.output(DIR2,CCW)
 	GPIO.output(STEP2,GPIO.HIGH)
 	sleep(delay)
 	GPIO.output(STEP2,GPIO.LOW)
 	sleep(delay)
 sleep(delay2)
-for x in range(25000):
+for x in range(10000):
 	GPIO.output(DIR,CW)
 	GPIO.output(STEP,GPIO.HIGH)
 	sleep(delay)
 	GPIO.output(STEP,GPIO.LOW)
 	sleep(delay)
 sleep(delay2)
-for x in range(25000):
+for x in range(10000):
 	GPIO.output(DIR,CCW)
 	GPIO.output(STEP,GPIO.HIGH)
 	sleep(delay)
 	GPIO.output(STEP,GPIO.LOW)
 	sleep(delay)
 sleep(delay2)
-for x in range(25000):
+for x in range(10000):
 	GPIO.output(DIR2,CW)
 	GPIO.output(STEP2,GPIO.HIGH)
 	sleep(delay)
 	GPIO.output(STEP2,GPIO.LOW)
 	sleep(delay)
 sleep(delay2)
-for x in range(25000):
+for x in range(10000):
 	GPIO.output(DIR2,CCW)
 	GPIO.output(STEP2,GPIO.HIGH)
 	sleep(delay)
 	GPIO.output(STEP2,GPIO.LOW)
 	sleep(delay)
 sleep(delay2)
-for x in range(25000):
+for x in range(10000):
 	GPIO.output(DIR,CW)
 	GPIO.output(STEP,GPIO.HIGH)
 	sleep(delay)
 	GPIO.output(STEP,GPIO.LOW)
 	sleep(delay)
 sleep(delay2)
-for x in range(25000):
+for x in range(10000):
 	GPIO.output(DIR,CCW)
 	GPIO.output(STEP,GPIO.HIGH)
 	sleep(delay)
 	GPIO.output(STEP,GPIO.LOW)
 	sleep(delay)
 sleep(delay2)
-for x in range(25000):
+for x in range(10000):
 	GPIO.output(DIR2,CW)
 	GPIO.output(STEP2,GPIO.HIGH)
 	sleep(delay)
 	GPIO.output(STEP2,GPIO.LOW)
 	sleep(delay)
 sleep(delay2)
-for x in range(25000):
+for x in range(10000):
 	GPIO.output(DIR2,CCW)
 	GPIO.output(STEP2,GPIO.HIGH)
 	sleep(delay)
 	GPIO.output(STEP2,GPIO.LOW)
 	sleep(delay)
 sleep(delay2)
-for x in range(25000):
+for x in range(10000):
 	GPIO.output(DIR,CW)
 	GPIO.output(STEP,GPIO.HIGH)
 	sleep(delay)
 	GPIO.output(STEP,GPIO.LOW)
 	sleep(delay)
 sleep(delay2)
-for x in range(25000):
+for x in range(10000):
 	GPIO.output(DIR,CCW)
 	GPIO.output(STEP,GPIO.HIGH)
 	sleep(delay)
 	GPIO.output(STEP,GPIO.LOW)
 	sleep(delay)
 sleep(delay2)
-for x in range(25000):
+for x in range(10000):
 	GPIO.output(DIR2,CW)
 	GPIO.output(STEP2,GPIO.HIGH)
 	sleep(delay)
 	GPIO.output(STEP2,GPIO.LOW)
 	sleep(delay)
 sleep(delay2)
-for x in range(25000):
+for x in range(10000):
 	GPIO.output(DIR2,CCW)
 	GPIO.output(STEP2,GPIO.HIGH)
 	sleep(delay)
 	GPIO.output(STEP2,GPIO.LOW)
 	sleep(delay)
 sleep(delay2)
-for x in range(25000):
+for x in range(10000):
 	GPIO.output(DIR,CW)
 	GPIO.output(STEP,GPIO.HIGH)
 	sleep(delay)
 	GPIO.output(STEP,GPIO.LOW)
 	sleep(delay)
 sleep(delay2)
-for x in range(25000):
+for x in range(10000):
 	GPIO.output(DIR,CCW)
 	GPIO.output(STEP,GPIO.HIGH)
 	sleep(delay)
 	GPIO.output(STEP,GPIO.LOW)
 	sleep(delay)
 sleep(delay2)
-for x in range(25000):
+for x in range(10000):
 	GPIO.output(DIR2,CW)
 	GPIO.output(STEP2,GPIO.HIGH)
 	sleep(delay)
 	GPIO.output(STEP2,GPIO.LOW)
 	sleep(delay)
 sleep(delay2)
-for x in range(25000):
+for x in range(10000):
 	GPIO.output(DIR2,CCW)
 	GPIO.output(STEP2,GPIO.HIGH)
 	sleep(delay)
 	GPIO.output(STEP2,GPIO.LOW)
 	sleep(delay)
 sleep(delay2)
-for x in range(25000):
-	GPIO.output(DIR,CW)
-	GPIO.output(STEP,GPIO.HIGH)
-	sleep(delay)
-	GPIO.output(STEP,GPIO.LOW)
-	sleep(delay)
-sleep(delay2)
-for x in range(25000):
-	GPIO.output(DIR,CCW)
-	GPIO.output(STEP,GPIO.HIGH)
-	sleep(delay)
-	GPIO.output(STEP,GPIO.LOW)
-	sleep(delay)
-sleep(delay2)
-for x in range(25000):
-	GPIO.output(DIR2,CW)
-	GPIO.output(STEP2,GPIO.HIGH)
-	sleep(delay)
-	GPIO.output(STEP2,GPIO.LOW)
-	sleep(delay)
-sleep(delay2)
-for x in range(25000):
-	GPIO.output(DIR2,CCW)
-	GPIO.output(STEP2,GPIO.HIGH)
-	sleep(delay)
-	GPIO.output(STEP2,GPIO.LOW)
-	sleep(delay)
-sleep(delay2)
-for x in range(25000):
-	GPIO.output(DIR,CW)
-	GPIO.output(STEP,GPIO.HIGH)
-	sleep(delay)
-	GPIO.output(STEP,GPIO.LOW)
-	sleep(delay)
-sleep(delay2)
-for x in range(25000):
-	GPIO.output(DIR,CCW)
-	GPIO.output(STEP,GPIO.HIGH)
-	sleep(delay)
-	GPIO.output(STEP,GPIO.LOW)
-	sleep(delay)
-sleep(delay2)
-for x in range(25000):
-	GPIO.output(DIR2,CW)
-	GPIO.output(STEP2,GPIO.HIGH)
-	sleep(delay)
-	GPIO.output(STEP2,GPIO.LOW)
-	sleep(delay)
-sleep(delay2)
-for x in range(25000):
-	GPIO.output(DIR2,CCW)
-	GPIO.output(STEP2,GPIO.HIGH)
-	sleep(delay)
-	GPIO.output(STEP2,GPIO.LOW)
-	sleep(delay)
-sleep(delay2)
-
