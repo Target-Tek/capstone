@@ -14,7 +14,6 @@ DIR2 = 12	# Direction for second motor
 delay = .000025
 cw = 0
 ccw = 1
-steps =1000
 # Connect to pigpiod daemon
 #pi = pigpio.pi()
 
@@ -34,6 +33,7 @@ k = 1
 l = 1
 
 def main(stdscr):
+	steps =1000		#This is the initial step size of 1.8 degrees
 	stdscr.clear()
 	stdscr.nodelay(True)
 	print("Running some program")
@@ -97,6 +97,18 @@ def main(stdscr):
 				sleep(delay)
 			#pi.set_PWM_dutycycle(STEP2, 128)		# 50% On 50% Off
 			#pi.set_PWM_frequency(STEP2, step_frequency)
+		elif direction == ord('9'):
+			stdscr.addstr("Large Step size")
+			steps = 1000	#This is a step size of .18 degrees
+		elif direction == ord('7'):
+			stdscr.addstr("Medium Step size")
+			steps = 100	#This is a step size of .18 degrees
+		elif direction == ord('3'):
+			stdscr.addstr("Small Step size")
+			steps = 10	#This is a step size of .018 degrees
+		elif direction == ord('1'):
+			stdscr.addstr("Tiny Step size")
+			steps = 1	#This is a step size of .0018 degrees
 		else:
 			stdscr.addstr("I dont'know that key")
 			#direction = '0'
