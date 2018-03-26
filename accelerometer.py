@@ -49,7 +49,9 @@ class Accelerometer:
         # Stepper code
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(Accelerometer.DIR,GPIO.OUT)
+        GPIO.setup(Accelerometer.DIR2,GPIO.OUT)
         GPIO.setup(Accelerometer.STEP,GPIO.OUT)
+        GPIO.setup(Accelerometer.STEP2,GPIO.OUT)
 
     def test(self):
         # A test method, reading the device ID registers of the accelerometer
@@ -70,15 +72,15 @@ class Accelerometer:
             sleep(Accelerometer.delay)
 
     def self_level(self):
-        [x_offset, _] = self.offset() # Read angular offset in degrees
-        if x_offset > 0:
+        [x_offset, y_offset] = self.offset() # Read angular offset in degrees
+        if y_offset > 0:
             GPIO.output(Accelerometer.DIR2,Accelerometer.CW)
         else:
             GPIO.output(Accelerometer.DIR2,Accelerometer.CCW)
-        for i in range(x_offset / Accelerometer.degrees_per_step):
+        for i in range(int(y_offset / Accelerometer.degrees_per_step)):
             GPIO.output(Accelerometer.STEP2,GPIO.HIGH)
             sleep(Accelerometer.delay)
-            GPIO.output(Accelerometer.STEP,GPIO.LOW)
+            GPIO.output(Accelerometer.STEP2,GPIO.LOW)
             sleep(Accelerometer.delay)
 
     def calibrate(self):
@@ -91,9 +93,8 @@ class Accelerometer:
             self.eighth_rotation() # Rotate to position for next reading.
             self.count = self.count + 1   # Increment count of how many readings have been taken.
         # Do the math and compute the averages.
-        self.x_golden = mean(self.x_readings)
-        self.y_golden = mean(self.y_readings)
-        self.z_golden = mean(self.z_readings)
+        self.x_golden = sum(self.x_readings) / 8.0
+        self.y_golden = sum(self.y_readings) / 8.0
         # Level the platform.
         self.self_level()
 
@@ -115,8 +116,8 @@ class Accelerometer:
         [x_read, y_read] = self.raw_output() # Read accelerometer data.
         x_read = x_read - self.x_golden # Find our error in LSBs.
         y_read = y_read - self.y_golden # Find our error in LSBs.
-        x_offset = x_read / lsb_per_g # Convert our error to g's.
-        y_offset = y_read / lsb_per_g # Convert our error to g's.
+        x_offset = x_read / Accelerometer.lsb_per_g # Convert our error to g's.
+        y_offset = y_read / Accelerometer.lsb_per_g # Convert our error to g's.
         # Small-angle approximation: The g's we are off by
         # is equal to the radians we are off by.
         x_offset = x_offset * 180 / pi # Convert to degrees.
