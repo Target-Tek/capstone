@@ -1,0 +1,4 @@
+Testing 1 minute survey in time with minimum of 3 m accuracy
+Accuracy in m: 1.4197
+about 5 minutes in 20 ft. distance
+about 5 minutes in 15 ft. distance
