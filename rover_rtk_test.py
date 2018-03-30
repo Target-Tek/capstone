@@ -16,6 +16,9 @@ NAVRELPOSNEDpoll = 'B5 62 01 3C 00 00 3D B8'
 #CFGPRTrover = 'B5 62 06 00 14 00 01 00 00 00 C0 08 00 00 00 4B 00 00 20 00 00 00 00 00 00 00 4E 0D'#old
 CFGPRTrover = 'B5 62 06 00 14 00 01 00 00 00 D0 08 00 00 00 4B 00 00 20 00 00 00 00 00 00 00 5E 0D'#new
 
+NAVHPPOSLLHpoll = 'B5 62 01 14 00 00 15 40'
+
+
 def read_msgs(ublox):
     time.sleep(1)
     while(ublox.in_waiting > 0):
@@ -38,6 +41,10 @@ def pollRelativePostion(ublox):
     ublox.write(bytes.fromhex(NAVRELPOSNEDpoll))
     read_msgs(ublox)
     
+def pollHPLLA(ublox):
+    ublox.write(bytes.fromhex(NAVHPPOSLLHpoll))    
+    read_msgs(ublox)
+
 if __name__ == '__main__':
     rover = serial.Serial('/dev/ttyACM0',9600)
     

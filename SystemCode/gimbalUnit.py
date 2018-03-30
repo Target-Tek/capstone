@@ -4,7 +4,7 @@ import rover_rtk_test
 import accelerometer
 from SystemCode import gimbal_keyboard_read
 from rover_rtk_test import pollRelativePostion
-from reading import RelPosNED
+from reading import RelPosNED, HpPosLLH
 from coordmath import getAzElFromDiff, CreateLLA, CreateAngles
 #from rover_rtk_test import rover
 #from email.mime import base
@@ -103,10 +103,10 @@ while (changePoint):
             #Make LLA coordinate
             targetLLA = CreateLLA(targetCoors[0], targetCoors[1], targetCoors[2])
             #Give option to enter gimbal unit GPS location
+            rover_rtk_test.pollHPLLA(ublox)
             print('Current Station GPS location calculated as ')
-            #TODO PRINT CURRENT STATION GPS LOCATION WITH ACCURACY
-            #high precision location in LLA can be obtained via UBX-NAV-HPPOSLLH (0x01 0x14)
-
+            print(HpPosLLH.getMostRecent().getLLA())
+            baseCoors = HpPosLLH.getMostRecent().getLLA()
             response = input('Enter Station coordinate? (1.Yes,  2. No)')
             if (str(response).lower()[0] == '1'):
                 proceed = False

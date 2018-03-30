@@ -75,6 +75,62 @@ def NMEA_readMsg(firstByte, serialIn):
     msg = msg + serialIn.readline()
     #checkSum for NMEA
     return msg
+
+class HpPosLLH:
+    def __init__(self, timeOfWeek, lat, long, alt, heightMSL, hAcc, vAcc):
+        self.timeOfWeek = timeOfWeek
+        self.latitutde = lat
+        self.longitude = long
+        self.altitude = alt
+        self.heightMSL = heightMSL
+        self.horizontalAcc = hAcc
+        self.verticalAcc = vAcc
+        
+    def getLLA(self):
+        return [self.latitutde, self.longitude, self.altitude]
+        
+    @staticmethod
+    def assignMostRecent(timeOfWeek, lat, long, alt, heightMSL, hAcc, vAcc):
+        HpPosLLH.mostRecent = HpPosLLH(timeOfWeek, lat, long, alt, heightMSL, hAcc, vAcc)
+    
+    @staticmethod
+    def getMostRecent():
+        return HpPosLLH.mostRecent
+
+#Note height here is WGS-84 based.
+def parseUbxNavHPPOSLLH(ubxMsg):
+    ubxMsgStr = ''.join('{:02x}'.format(x) for x in ubxMsg)
+    msgContent = ubxMsg[6:]
+    version = getUnsigned(msgContent[0:1], 1)
+    #1-3 is reserved
+    timeOfWeek = getTimeOfWeek(msgContent[4:8])
+    longLP = getSigned(msgContent[8:12], 4)    # deg (1e-7)
+    latLP = getSigned(msgContent[12:16], 4)   # deg (1e-7)
+    heightLP = getSigned(msgContent[16:20], 4)   # mm
+    heightMSLLP = getSigned(msgContent[20:24], 4) #mm
+    longHP = getSigned(msgContent[24:25], 1) # deg (1e-9)
+    latHP = getSigned(msgContent[25:26], 1) # deg (1e-9)
+    heightHP = getSigned(msgContent[26:27], 1) # height in 0.1mm
+    heightMSLHP = getSigned(msgContent[27:28], 1) # height avobe mean sea level in 0.1mm
+    hAcc = getSigned(msgContent[28:32], 1) # horizontal accuracy in 0.1mm
+    vAcc = getSigned(msgContent[32:36], 1) # vertical accuracy in 0.1mm
+    longitudeDeg = (longLP / 10000000.0) + (longHP / 1000000000.0)
+    latitudeDeg = (latLP / 10000000.0) + (latHP / 1000000000.0)
+    heightM = (heightLP / 1000.0) + (heightHP / 10000.0)
+    heightMSLM = (heightMSLLP / 1000.0) + (heightMSLHP / 10000.0)
+    horizAcc = (hAcc / 10000.0)
+    vertAcc = (vAcc / 10000.0)
+    
+    HpPosLLH.assignMostRecent(timeOfWeek, latitudeDeg, longitudeDeg, heightM, heightMSLM, horizAcc, vertAcc)
+    return "UBX-NAV-HPPOSLLH " + ubxMsgStr + "\n" +\
+            "ver" + str(version) +\
+            timeOfWeek.getFullString() + "\n" +\
+            "\tLat: " + str(latitudeDeg) +\
+            "\tLong: "+ str(longitudeDeg) +\
+            "\tAlt: " + str(heightM) + +\
+            "\tHeight Above mean sea level: " + str(heightMSLM) + '\n'+\
+            "horizontal Accuracy: " + str(horizAcc) + '\n' +\
+            "vertical Accuracy: " + str(vertAcc)
     
 def parseUbxNavDGPS(ubxMsg):
     ubxMsgStr = ''.join('{:02x}'.format(x) for x in ubxMsg)
@@ -192,6 +248,8 @@ def parseUbxMsg(ubxMsg):
         return parseUbxNavSvin(ubxMsg)
     if ubxMsg[2] == 1 and ubxMsg [3] == 0x3C:
         return parseUbxNavRelposned(ubxMsg)
+    if ubxMsg[2] == 1 and ubxMsg[3] == 0x14:
+        return parseUbxNavHPPOSLLH(ubxMsg)
     else:
         ubxMsgStr = ''.join('{:02x}'.format(x) for x in ubxMsg)
         return 'UBX: 0x' + ubxMsgStr + '\r\n'
