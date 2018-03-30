@@ -16,12 +16,13 @@ from spidev import * # Import py-spidev library for SPI communications.
 from numpy import int8 # For converting two's complement bytes to ints
 from math import pi # Used for converting from radians to degrees.
 import RPi.GPIO as GPIO # Used for GPIO and driving the stepper 
+from ADCPi import ADCPi # Used for reading the accelerometer.
 
 class Accelerometer:
     # Constants for all class instances.
     number_of_readings = 8	# Take 8 readings at 45 degree increments.
     settling_time_delay_s = .500	# Wait this many ms for device to settle before taking a reading.
-    lsb_per_g = 1024 # Least significant bits per g, used to interpret output.
+    volts_per_g = 0.11 # Approximately how many volts per g.
     # Stepper motor interface parameters
     step_frequency = 4000
     degrees_per_step = 0.002
@@ -37,15 +38,9 @@ class Accelerometer:
     # Constructor. Initializes things to zero.
     def __init__(self):
         self.count = 0	# Initialize count. How many readings have we taken.
-        self.x_golden, self.y_golden, self.z_golden = -1, -1, -1    # Initialize to error value.
+        self.x_golden, self.y_golden, self.z_golden = 0.561187, 0.563388, -1    # Initialize to error value.
         self.x_readings, self.y_readings, self.z_readings = [], [], []   # Initialize data vectors.
-        self.spi = SpiDev() # Create SPI object.
-        self.spi.open(0,0) # Open SPI object for communication.
-        self.spi.max_speed_hz = 100000 # Set communication rate
-        self.spi.mode = 0b11 # Set CPOL/CPHA
-#        self.spi.xfer([0x2C, 0x06]) # Set lowest output data rate for minimum noise.
-#        self.spi.xfer([0x31, 0x80]) # Set full resolution mode, 1024 LSB/g.
-        self.spi.xfer([0x2D, 0x08]) # Turn on accelerometer's measurement mode.
+        self.adc = ADCPi(0x68, 0x69, 18) # Create an ADC object at the correct address with the minimum output data rate
         # Stepper code
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(Accelerometer.DIR,GPIO.OUT)
@@ -73,11 +68,11 @@ class Accelerometer:
 
     def self_level(self):
         [x_offset, y_offset] = self.offset() # Read angular offset in degrees
-        if y_offset > 0:
+        if x_offset > 0:
             GPIO.output(Accelerometer.DIR2,Accelerometer.CW)
         else:
             GPIO.output(Accelerometer.DIR2,Accelerometer.CCW)
-        for i in range(int(y_offset / Accelerometer.degrees_per_step)):
+        for i in range(abs(int(x_offset / Accelerometer.degrees_per_step))):
             GPIO.output(Accelerometer.STEP2,GPIO.HIGH)
             sleep(Accelerometer.delay)
             GPIO.output(Accelerometer.STEP2,GPIO.LOW)
@@ -95,29 +90,18 @@ class Accelerometer:
         # Do the math and compute the averages.
         self.x_golden = sum(self.x_readings) / 8.0
         self.y_golden = sum(self.y_readings) / 8.0
-        # Level the platform.
-        self.self_level()
 
     def raw_output(self):
         # Gives the raw accelerometer output, interpreted as numbers.
-        # Output registers for X and Y axes are 0x32 - 0x35.
-        # First two bits are both set high, the first bit indicating a read
-        # and the second indicating a multi-byte read, so our message is 0xF2.
-        msg = [0xF2, 0x00, 0x00, 0x00, 0x00] # Message to be sent.
-        data = self.spi.xfer(msg) # Send data over SPI and read output.
-        output = [] # Initialize output data array
-        # Interpret bytes as numbers
-        output.append((int8(data[2]) << 8) + int8(data[1])) # Concatenate bytes
-        output.append((int8(data[4]) << 8) + int8(data[3])) # Concatanate bytes
-        return output
+        return [self.adc.read_voltage(7), self.adc.read_voltage(8)]
 
     def offset(self):
         # Returns a vector containing angular offsets from level, in degrees.
         [x_read, y_read] = self.raw_output() # Read accelerometer data.
         x_read = x_read - self.x_golden # Find our error in LSBs.
         y_read = y_read - self.y_golden # Find our error in LSBs.
-        x_offset = x_read / Accelerometer.lsb_per_g # Convert our error to g's.
-        y_offset = y_read / Accelerometer.lsb_per_g # Convert our error to g's.
+        x_offset = x_read / Accelerometer.volts_per_g# Convert our error to g's.
+        y_offset = y_read / Accelerometer.volts_per_g # Convert our error to g's.
         # Small-angle approximation: The g's we are off by
         # is equal to the radians we are off by.
         x_offset = x_offset * 180 / pi # Convert to degrees.
