@@ -37,9 +37,8 @@ while True:
     if (str(response).lower()[0] == '1'):
         break
 
-acc = accelerometer.Accelerometer()
-acc.calibrate()
-acc.self_level()
+acc = accelerometer.Accelerometer() # Create Accelerometer object.
+#acc.calibrate() # Note: calibrate() is not currently functional. Measured level values are hardcoded into self_level(). Just call that.
 
 
 # Prompt User to point to remote unit
@@ -152,7 +151,7 @@ while (changePoint):
             print('Elevation' + AzEl[0])
             print('Azimuth: ' + AzEl[1])
             print('By Rotating on Pitch and on Heading')
-            solution.siplaySol()
+            solution.displaySol()
             response = input('Proceed with Pointing? (1.Yes,  2. No)')
             if (str(response).lower()[0] == '1'):
                 beginPoint = True
@@ -162,7 +161,67 @@ while (changePoint):
             
 
     #Begin Pointing
-    #TODO: Pointing code (code that takes the offsets as calculated by Palmer's math code, and rotates those number of degrees on az and el.
+    #TODO: Pointing code (code that takes the offsets as calculated by Palmer's math code, and rotates those number of degrees on az and el.A
+
+    delay1 = .0005
+    delay2 = .00001
+    delay3 = .000025
+    cw = 0
+    ccw = 1
+    DIR = 20
+    STEP = 21
+    DIR2 = 12
+    STEP2 = 26
+    
+    El_steps = solution.getRelEl() * 200000 / 360 # Remove magic numbers later lol
+    El_steps1 = min(El_steps, 1000)
+    El_steps2 = min(El_steps-1000, 1000)
+    El_steps3 = El_steps - El_steps1 - El_steps2
+    Az_steps  = solution.getRelAz() * 200000 / 360 # Remove magic numbers later lol
+    Az_steps1 = min(Az_steps, 1000)
+    Az_steps2 = min(Az_steps-1000, 1000)
+    Az_steps3 = Az_steps - Az_steps1 - Az_steps2
+
+    # Ramp code for rotating gimbal to target.
+
+    for x in range(Az_steps1):
+	GPIO.output(DIR,ccw)
+	GPIO.output(STEP,GPIO.HIGH)
+	sleep(delay1)
+	GPIO.output(STEP,GPIO.LOW)
+	sleep(delay1)
+    for x in range(Az_steps2):
+	GPIO.output(DIR,ccw)
+	GPIO.output(STEP,GPIO.HIGH)
+	sleep(delay2)
+	GPIO.output(STEP,GPIO.LOW)
+	sleep(delay2)
+    for x in range(Az_steps3):
+	GPIO.output(DIR,ccw)
+	GPIO.output(STEP,GPIO.HIGH)
+	sleep(delay3)
+	GPIO.output(STEP,GPIO.LOW)
+	sleep(delay3)
+
+    for x in range(El_steps1):
+	GPIO.output(DIR2,ccw)
+	GPIO.output(STEP2,GPIO.HIGH)
+	sleep(delay1)
+	GPIO.output(STEP2,GPIO.LOW)
+	sleep(delay1)
+    for x in range(El_steps2):
+	GPIO.output(DIR2,ccw)
+	GPIO.output(STEP2,GPIO.HIGH)
+	sleep(delay2)
+	GPIO.output(STEP2,GPIO.LOW)
+	sleep(delay2)
+    for x in range(El_steps3):
+	GPIO.output(DIR2,ccw)
+	GPIO.output(STEP2,GPIO.HIGH)
+	sleep(delay3)
+	GPIO.output(STEP2,GPIO.LOW)
+	sleep(delay3)
+
     #Prompt to change target coordinate.
     repeat = True
     while (repeat):
@@ -173,4 +232,4 @@ while (changePoint):
             repeat = False
         elif (str(response).lower()[0] == '2'):
             repeat = True
-        
+       
