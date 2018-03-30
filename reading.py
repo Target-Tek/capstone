@@ -155,10 +155,9 @@ def parseUbxNavSvin(ubxMsg):
     z = (meanZ / 100.0) + (meanZHP / 10000.0)
     acc = meanAcc / 10000.0
 
-    globals()['surveyInState'] = SurveyInStatus(ubxMsgStr, uTimeOfTheWeek, uDurationPassed, \
-                                                x, y, z, acc, posObs, validSurvey,\
-                                                activeSurvey)
-    return surveyInState.getFullString()
+    SurveyInStatus.assignMostRecent(ubxMsgStr, uTimeOfTheWeek,\
+        uDurationPassed, x, y, z, acc, posObs, validSurvey, activeSurvey)
+    return SurveyInStatus.getMostRecent().getFullString()
     
     
 def parseUbxMsg(ubxMsg):
@@ -183,6 +182,20 @@ class SurveyInStatus:
         self.samples = samples;
         self.isValid = valid;
         self.isActive = active;
+        
+    @staticmethod
+    def assignMostRecent(ubxMsgStr, uTimeOfTheWeek, uDurationPassed, \
+                        x, y, z, acc, posObs, validSurvey, activeSurvey):
+        SurveyInStatus.mostRecent = SurveyInStatus(ubxMsgStr, uTimeOfTheWeek, uDurationPassed, \
+                        x, y, z, acc, posObs, validSurvey, activeSurvey)
+    
+    @staticmethod
+    def getMostRecent():
+        return SurveyInStatus.mostRecent    
+    
+    @staticmethod
+    def isMostRecentValid():
+        return SurveyInStatus.mostRecent.isValid;
         
     def getFullString(self):
         return "UBX-NAV-SVIN: " + self.MSG + "\n\r" \

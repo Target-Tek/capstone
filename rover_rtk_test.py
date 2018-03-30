@@ -23,20 +23,27 @@ def read_msgs(ublox):
         print(readMsg(ublox), end = '')       
     return
 
+def clearDefaultMsgs(ublox):
+    ublox.write(clrGGA.encode('utf-8'))
+    ublox.write(clrGLL.encode('utf-8'))
+    ublox.write(clrRMC.encode('utf-8'))
+    ublox.write(clrVTG.encode('utf-8'))
+    ublox.write(clrGSA.encode('utf-8'))
+    ublox.write(clrGSV.encode('utf-8'))
+    
+def enableRTKMsgs(ublox):
+    ublox.write(bytes.fromhex(CFGPRTrover))
+    
 rover = serial.Serial('/dev/ttyACM0',9600)
 
 read_msgs(rover)
 print('-----clearing default messages-----')
-rover.write(clrGGA.encode('utf-8'))
-rover.write(clrGLL.encode('utf-8'))
-rover.write(clrRMC.encode('utf-8'))
-rover.write(clrVTG.encode('utf-8'))
-rover.write(clrGSA.encode('utf-8'))
-rover.write(clrGSV.encode('utf-8'))
+clearDefaultMsgs(rover)
+
 ##print('-----reading leftover messages-----')
 ##read_msgs(rover)
 print('-----writing RTK GPS enabling messages-----')
-rover.write(bytes.fromhex(CFGPRTrover))
+enableRTKMsgs(rover)
 print('-----reading results of RTK GPS messages-----')
 #time.sleep(1)
 secBtwnRead = 1
