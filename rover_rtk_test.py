@@ -34,28 +34,32 @@ def clearDefaultMsgs(ublox):
 def enableRTKMsgs(ublox):
     ublox.write(bytes.fromhex(CFGPRTrover))
     
-rover = serial.Serial('/dev/ttyACM0',9600)
-
-read_msgs(rover)
-print('-----clearing default messages-----')
-clearDefaultMsgs(rover)
-
-##print('-----reading leftover messages-----')
-##read_msgs(rover)
-print('-----writing RTK GPS enabling messages-----')
-enableRTKMsgs(rover)
-print('-----reading results of RTK GPS messages-----')
-#time.sleep(1)
-secBtwnRead = 1
-i = 0
-j = 0
-for x in range(0,2700):
-    print(str(i) + 'seconds')
-    i = i + secBtwnRead
-    j = j + 1
-    rover.write(bytes.fromhex(NAVPVTpoll))
-    rover.write(bytes.fromhex(NAVRELPOSNEDpoll))
+def pollRelativePostion(ublox):
+    ublox.write(bytes.fromhex(NAVRELPOSNEDpoll))
+    read_msgs(ublox)
+    
+if __name__ == '__main__':
+    rover = serial.Serial('/dev/ttyACM0',9600)
+    
     read_msgs(rover)
-    time.sleep(secBtwnRead - 1)
-print('-----end of script-----')
-rover.close()
+    print('-----clearing default messages-----')
+    clearDefaultMsgs(rover)
+    
+    ##print('-----reading leftover messages-----')
+    ##read_msgs(rover)
+    print('-----writing RTK GPS enabling messages-----')
+    enableRTKMsgs(rover)
+    print('-----reading results of RTK GPS messages-----')
+    #time.sleep(1)
+    secBtwnRead = 1
+    i = 0
+    j = 0
+    for x in range(0,2700):
+        print(str(i) + 'seconds')
+        i = i + secBtwnRead
+        j = j + 1
+        rover.write(bytes.fromhex(NAVPVTpoll))
+        pollRelativePostion(rover)
+        time.sleep(secBtwnRead - 1)
+    print('-----end of script-----')
+    rover.close()

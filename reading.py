@@ -94,6 +94,31 @@ def parseUbxNavDGPS(ubxMsg):
         pseudoRateCorrection = getUnsigned(msgContent[24 + offset: msgContent[28 + offset]], 4)
     #Do something with the data
     
+class RelPosNED:
+    def __init__(self, timeOfWeek, N, N_acc, E, E_acc, D, D_acc, rtkFix):
+        self.timeOfWeek = timeOfWeek
+        self.N = N
+        self.N_acc = N_acc
+        self.E = E
+        self.E_acc = E_acc
+        self.D = D
+        self.D_acc = D_acc
+        self.rtkFix = rtkFix
+        
+    def getRelPos(self):
+        return [self.N, self.E, self.D]
+    
+    def getRelPosAcc(self):
+        return [self.N_acc, self.E_acc, self.D_acc]
+    
+    @staticmethod
+    def assignMostRecent(timeOfWeek, N, N_acc, E, E_acc, D, D_acc, rtkFix):
+        RelPosNED.mostRecent = RelPosNED(timeOfWeek, N, N_acc, E, E_acc, D, D_acc, rtkFix)
+    
+    @staticmethod
+    def getMostRecent():
+        return RelPosNED.mostRecent  
+    
 def parseUbxNavRelposned(ubxMsg):
     ubxMsgStr = ''.join('{:02x}'.format(x) for x in ubxMsg)
     msgContent = ubxMsg[6:]
@@ -123,6 +148,8 @@ def parseUbxNavRelposned(ubxMsg):
     isMoving = ((flags >> 5) & 1) == 1
     refPosMiss = ((flags >> 6) & 1) == 1
     refObsMiss = ((flags >> 7) & 1) == 1
+    
+    RelPosNED.assignMostRecent(timeOfWeek, relPosN_m, accN_meters, relPosE_m, accE_meters, relPosD_m, accD_meters, True if (carrSoln == 2) else False)    
     
     return "UBX-NAV-RELPOSNED " + ubxMsgStr + "\n" +\
             "ver" + str(version) + " station " + str(refStationID) + "\n" +\

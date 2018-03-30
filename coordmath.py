@@ -3,44 +3,53 @@ from numpy import array, matmul
 
 pi = 3.14159265358979 #better accuracy value for pi
 
-#===================test values=======================
-plat = 41.590833
-plon = -111.3952778
-palt = 5281
-
-roll = 3
-pitch = -10
-heading = 140
-
-t1lat = 42.6049294
-t1lon = -113.8423461
-t1alt = 12000
-
-t2lat = 43.3831003
-t2lon = -109.9647447
-t2alt = 12000
-
-t3lat = 39.6328939
-t3lon = -112.3186589
-t3alt = 12000
-
-t4lat = 40.5264822
-t4lon = -109.0257347
-t4alt = 12000
-
-pTESTlat = 40.236283
-pTESTlon = -111.694184
-pTESTalt = 4468.02822
-
-tarTESTlat = 40.2361734
-tarTESTlon = -111.6946300
-tarTESTalt = 4469.72769
-
-TESTroll = 0
-TESTpitch = 0
-TESTheading = 0
-#=====================================================
-
+if __name__ == '__main__':
+	#===================test values=======================
+	plat = 41.590833
+	plon = -111.3952778
+	palt = 5281
+	
+	roll = 3
+	pitch = -10
+	heading = 140
+	
+	t1lat = 42.6049294
+	t1lon = -113.8423461
+	t1alt = 12000
+	
+	t2lat = 43.3831003
+	t2lon = -109.9647447
+	t2alt = 12000
+	
+	t3lat = 39.6328939
+	t3lon = -112.3186589
+	t3alt = 12000
+	
+	t4lat = 40.5264822
+	t4lon = -109.0257347
+	t4alt = 12000
+	
+	pTESTlat = 40.236283
+	pTESTlon = -111.694184
+	pTESTalt = 4468.02822
+	
+	tarTESTlat = 40.2361734
+	tarTESTlon = -111.6946300
+	tarTESTalt = 4469.72769
+	
+	TESTroll = 0
+	TESTpitch = 0
+	TESTheading = 0
+	#=====================================================
+def getAzElFromDiff(North, East, Down):
+	initAngle = atan2(North, East)
+	if (initAngle < 0):
+		initAngle = initAngle + pi;
+	az = (initAngle * 180 / pi)
+	flatMag = sqrt(North * North + East * East)
+	el = -atan(Down / flatMag) * 180 / pi
+	return [az, el]
+	
 #================for testing purposes=================
 class CreateLLA:
 	def __init__(self,lat, lon, alt):
@@ -229,26 +238,27 @@ class AzEl:
 	def getRelEl(self):
 		return self.tarSol.getRelEl()
 
-print('-----------Starting script-----------')
-#=============for testing purposes===================
-ped_lla = CreateLLA(plat,plon,palt)
-tar1_lla = CreateLLA(t1lat,t1lon,t1alt)
-tar2_lla = CreateLLA(t2lat,t2lon,t2alt)
-tar3_lla = CreateLLA(t3lat,t3lon,t3alt)
-tar4_lla = CreateLLA(t4lat,t4lon,t4alt)
-ped_angles = CreateAngles(roll, pitch, heading)
-pedTEST_lla = CreateLLA(pTESTlat, pTESTlon, pTESTalt)
-tarTEST_lla = CreateLLA(tarTESTlat,tarTESTlon,tarTESTalt)
-pedTEST_angles = CreateAngles(TESTroll,TESTpitch,TESTheading)
-sol1 = AzEl(ped_lla,ped_angles,tar1_lla)
-sol2 = AzEl(ped_lla,ped_angles,tar2_lla)
-sol3 = AzEl(ped_lla,ped_angles,tar3_lla)
-sol4 = AzEl(ped_lla,ped_angles,tar4_lla)
-solTEST = AzEl(pedTEST_lla,pedTEST_angles,tarTEST_lla)
-sol1.displaySol()
-sol2.displaySol()
-sol3.displaySol()
-sol4.displaySol()
-solTEST.displaySol()
-#====================================================
-print('------------Ending script------------')
+if __name__ == '__main__':
+	print('-----------Starting script-----------')
+	#=============for testing purposes===================
+	ped_lla = CreateLLA(plat,plon,palt)
+	tar1_lla = CreateLLA(t1lat,t1lon,t1alt)
+	tar2_lla = CreateLLA(t2lat,t2lon,t2alt)
+	tar3_lla = CreateLLA(t3lat,t3lon,t3alt)
+	tar4_lla = CreateLLA(t4lat,t4lon,t4alt)
+	ped_angles = CreateAngles(roll, pitch, heading)
+	pedTEST_lla = CreateLLA(pTESTlat, pTESTlon, pTESTalt)
+	tarTEST_lla = CreateLLA(tarTESTlat,tarTESTlon,tarTESTalt)
+	pedTEST_angles = CreateAngles(TESTroll,TESTpitch,TESTheading)
+	sol1 = AzEl(ped_lla,ped_angles,tar1_lla)
+	sol2 = AzEl(ped_lla,ped_angles,tar2_lla)
+	sol3 = AzEl(ped_lla,ped_angles,tar3_lla)
+	sol4 = AzEl(ped_lla,ped_angles,tar4_lla)
+	solTEST = AzEl(pedTEST_lla,pedTEST_angles,tarTEST_lla)
+	sol1.displaySol()
+	sol2.displaySol()
+	sol3.displaySol()
+	sol4.displaySol()
+	solTEST.displaySol()
+	#====================================================
+	print('------------Ending script------------')
