@@ -6,14 +6,11 @@
 # 1/18/2018
 
 # Requires Python 3.4 or later
-# For the ADXL313
+# For the ADXL335
 
-# IMPORTANT: You must 'sudo raspi-config' and enable SPI before this script will work!
+# IMPORTANT: You must 'sudo raspi-config' and enable I2C before this script will work!
 
 from time import sleep # Give us access to a clock and time.sleep(seconds).
-from statistics import mean # Take averages. Requires 3.4 or later.
-from spidev import * # Import py-spidev library for SPI communications.
-from numpy import int8 # For converting two's complement bytes to ints
 from math import pi # Used for converting from radians to degrees.
 import RPi.GPIO as GPIO # Used for GPIO and driving the stepper 
 from ADCPi import ADCPi # Used for reading the accelerometer.
@@ -47,16 +44,6 @@ class Accelerometer:
         GPIO.setup(Accelerometer.DIR2,GPIO.OUT)
         GPIO.setup(Accelerometer.STEP,GPIO.OUT)
         GPIO.setup(Accelerometer.STEP2,GPIO.OUT)
-
-    def test(self):
-        # A test method, reading the device ID registers of the accelerometer
-        # and comparing them to known values.
-        msg = [0xC0, 0x00, 0x00, 0x00] # Message to read the three device registers.
-        received = self.spi.xfer(msg) # Communicate with accelerometer.
-        desired = [0x00, 0xAD, 0x1D, 0xCB] # This is what we should get back.
-        print('First byte is junk and does not have to match.')
-        print('Received message: ', received)
-        print(' Desired message: ', desired)
 
     def eighth_rotation(self):
         for x in range(25000): # One eighth of a full rotation.
@@ -111,4 +98,4 @@ class Accelerometer:
     def offset_total(self):
         # Return overall angular error from level.
         [x_offset, y_offset] = self.offset() # Compute individual offsets.
-        return float(x_offset(self)**2 + y_offset(self)**2)**0.5 # Combine them.
+        return float(x_offset**2 + y_offset**2)**0.5 # Combine them.
