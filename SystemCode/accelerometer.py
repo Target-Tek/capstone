@@ -17,8 +17,8 @@ from ADCPi import ADCPi # Used for reading the accelerometer.
 
 class Accelerometer:
     # Constants for all class instances.
-    number_of_readings = 8    # Take 8 readings at 45 degree increments.
-    settling_time_delay_s = .500    # Wait this many ms for device to settle before taking a reading.
+    number_of_readings = 8	# Take 8 readings at 45 degree increments.
+    settling_time_delay_s = 1.000	# Wait this many ms for device to settle before taking a reading.
     volts_per_g = 0.11 # Approximately how many volts per g.
     # Stepper motor interface parameters
     step_frequency = 4000
@@ -34,7 +34,7 @@ class Accelerometer:
 
     # Constructor. Initializes things to zero.
     def __init__(self):
-        self.count = 0    # Initialize count. How many readings have we taken.
+        self.count = 0	# Initialize count. How many readings have we taken.
         self.x_golden, self.y_golden, self.z_golden = 0.561187, 0.563388, -1    # Initialize to error value.
         self.x_readings, self.y_readings, self.z_readings = [], [], []   # Initialize data vectors.
         self.adc = ADCPi(0x68, 0x69, 18) # Create an ADC object at the correct address with the minimum output data rate
@@ -44,6 +44,8 @@ class Accelerometer:
         GPIO.setup(Accelerometer.DIR2,GPIO.OUT)
         GPIO.setup(Accelerometer.STEP,GPIO.OUT)
         GPIO.setup(Accelerometer.STEP2,GPIO.OUT)
+        # Step tracking
+        self.cw_steps_taken_from_baseline = 0
 
     def eighth_rotation(self):
         for x in range(25000): # One eighth of a full rotation.
@@ -55,11 +57,14 @@ class Accelerometer:
 
     def self_level(self):
         [x_offset, y_offset] = self.offset() # Read angular offset in degrees
-        if x_offset > 0:
+        steps = abs(int(y_offset / Accelerometer.degrees_per_step))
+        if y_offset < 0:
             GPIO.output(Accelerometer.DIR2,Accelerometer.CW)
+            self.cw_steps_taken_from_baseline = self.cw_steps_taken_from_baseline + steps
         else:
             GPIO.output(Accelerometer.DIR2,Accelerometer.CCW)
-        for i in range(abs(int(x_offset / Accelerometer.degrees_per_step))):
+            self.cw_steps_taken_from_baseline = self.cw_steps_taken_from_baseline - steps
+        for i in range(steps):
             GPIO.output(Accelerometer.STEP2,GPIO.HIGH)
             sleep(Accelerometer.delay)
             GPIO.output(Accelerometer.STEP2,GPIO.LOW)
