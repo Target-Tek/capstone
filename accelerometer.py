@@ -44,6 +44,8 @@ class Accelerometer:
         GPIO.setup(Accelerometer.DIR2,GPIO.OUT)
         GPIO.setup(Accelerometer.STEP,GPIO.OUT)
         GPIO.setup(Accelerometer.STEP2,GPIO.OUT)
+        # Step tracking
+        self.cw_steps_taken_from_baseline = 0
 
     def eighth_rotation(self):
         for x in range(25000): # One eighth of a full rotation.
@@ -55,11 +57,14 @@ class Accelerometer:
 
     def self_level(self):
         [x_offset, y_offset] = self.offset() # Read angular offset in degrees
+        steps = abs(int(x_offset / Accelerometer.degrees_per_step))
         if x_offset > 0:
             GPIO.output(Accelerometer.DIR2,Accelerometer.CW)
+            self.cw_steps_taken_from_baseline = self.cw_steps_taken_from_baseline + steps
         else:
             GPIO.output(Accelerometer.DIR2,Accelerometer.CCW)
-        for i in range(abs(int(x_offset / Accelerometer.degrees_per_step))):
+            self.cw_steps_taken_from_baseline = self.cw_steps_taken_from_baseline - steps
+        for i in range(steps):
             GPIO.output(Accelerometer.STEP2,GPIO.HIGH)
             sleep(Accelerometer.delay)
             GPIO.output(Accelerometer.STEP2,GPIO.LOW)
