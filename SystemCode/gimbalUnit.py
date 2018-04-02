@@ -163,6 +163,8 @@ while (changePoint):
     #Begin Pointing
     #TODO: Pointing code (code that takes the offsets as calculated by Palmer's math code, and rotates those number of degrees on az and el.A
 
+    acc.self_level() # Level the accelerometer.
+
     delay1 = .0005
     delay2 = .00001
     delay3 = .000025
