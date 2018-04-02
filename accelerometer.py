@@ -18,7 +18,7 @@ from ADCPi import ADCPi # Used for reading the accelerometer.
 class Accelerometer:
     # Constants for all class instances.
     number_of_readings = 8	# Take 8 readings at 45 degree increments.
-    settling_time_delay_s = .500	# Wait this many ms for device to settle before taking a reading.
+    settling_time_delay_s = 1.000	# Wait this many ms for device to settle before taking a reading.
     volts_per_g = 0.11 # Approximately how many volts per g.
     # Stepper motor interface parameters
     step_frequency = 4000
