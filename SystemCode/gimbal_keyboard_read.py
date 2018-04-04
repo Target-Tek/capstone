@@ -34,13 +34,16 @@ i = 1
 j = 1
 k = 1
 l = 1
+camera = PiCamera()
+
+def stopCamera():
+    camera.stop_preview()
 
 def main(stdscr):
     steps =1000        #This is the initial step size of 1.8 degrees
     stdscr.clear()
     stdscr.nodelay(True)
     print("Running some program")
-    camera = PiCamera()
     camera.start_preview()
     #sleep(10000)
     #camera.stop_preview()

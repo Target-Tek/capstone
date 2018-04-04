@@ -2,7 +2,7 @@ import serial
 from sys import platform
 import rover_rtk_test
 import accelerometer
-from SystemCode import gimbal_keyboard_read
+import gimbal_keyboard_read
 from rover_rtk_test import pollRelativePostion
 from reading import RelPosNED, HpPosLLH
 from coordmath import getAzElFromDiff, CreateLLA, CreateAngles
@@ -50,6 +50,7 @@ print('Change speed by pressing (low) 1, 3, 7, or 9 (high)')
 print('press 0 when finished')
     # Allow the user to point things
 gimbal_keyboard_read.startScanning()
+gimbal_keyboard_read.stopCamera()
 #Establish North
 # notify of waiting for RTK fix
 print('Waiting for RTK-GPS fix')
@@ -203,10 +204,10 @@ while (changePoint):
     	GPIO.output(STEP,GPIO.HIGH)
     	sleep(delay3)
     	GPIO.output(STEP,GPIO.LOW)
-	    sleep(delay3)
+    	sleep(delay3)
 
     for x in range(El_steps1):
-	    GPIO.output(DIR2,ccw)
+    	GPIO.output(DIR2,ccw)
     	GPIO.output(STEP2,GPIO.HIGH)
     	sleep(delay1)
     	GPIO.output(STEP2,GPIO.LOW)
