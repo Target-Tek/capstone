@@ -35,7 +35,7 @@ class Accelerometer:
     # Constructor. Initializes things to zero.
     def __init__(self):
         self.count = 0	# Initialize count. How many readings have we taken.
-        self.x_golden, self.y_golden, self.z_golden = 0.561187, 0.563388, -1    # Initialize to error value.
+        self.x_golden, self.y_golden, self.z_golden = 0.565550125, 0.5642760156250001, -1    # Initialize to error value.
         self.x_readings, self.y_readings, self.z_readings = [], [], []   # Initialize data vectors.
         self.adc = ADCPi(0x68, 0x69, 18) # Create an ADC object at the correct address with the minimum output data rate
         # Stepper code
@@ -58,7 +58,7 @@ class Accelerometer:
     def self_level(self):
         [x_offset, y_offset] = self.offset() # Read angular offset in degrees
         steps = abs(int(y_offset / Accelerometer.degrees_per_step))
-        if y_offset < 0:
+        if y_offset > 0:
             GPIO.output(Accelerometer.DIR2,Accelerometer.CW)
             self.cw_steps_taken_from_baseline = self.cw_steps_taken_from_baseline + steps
         else:

@@ -1,0 +1,814 @@
+ver0 station 0
+287714000ms - Wednesday 7:55:14
+position: 50.701m N +-0.0147m, -15.5686m E +-0.0436m, 0.0943m D +-0.0804m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c280000000000b82e2611cd130000eaf9ffff080000005bf3170092000000b2010000200300000f0000002723
+ver0 station 0
+287715000ms - Wednesday 7:55:15
+position: 50.699099999999994m N +-0.0146m, -15.5557m E +-0.0434m, 0.0823m D +-0.08m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c280000000000a0322611ce130000eaf9ffff080000001dea5d0092000000b10100001d0300000f0000000fb4
+ver0 station 0
+287716000ms - Wednesday 7:55:16
+position: 50.7029m N +-0.0146m, -15.5566m E +-0.0433m, 0.0893m D +-0.0797m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c28000000000088362611cd130000ebf9ffff070000005bab5c0092000000b00100001a0300000f000000f4b9
+ver0 station 0
+287717000ms - Wednesday 7:55:17
+position: 50.699099999999994m N +-0.0146m, -15.552900000000001m E +-0.0432m, 0.0792m D +-0.0794m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c280000000000703a2611cd130000eaf9ffff0800000055c02c0091000000ae010000170300000f000000b958
+ver0 station 0
+287718000ms - Wednesday 7:55:18
+position: 50.698499999999996m N +-0.0145m, -15.5608m E +-0.043m, 0.0844m D +-0.0791m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c280000000000583e2611ce130000e9f9ffff070000000a004c0091000000ad010000150300000f000000b678
+ver0 station 0
+287719000ms - Wednesday 7:55:19
+position: 50.701m N +-0.0145m, -15.59m E +-0.0429m, 0.0776m D +-0.0789m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c28000000000040422611ce130000e9f9ffff0800000009d85b0090000000ac010000120300000f000000848a
+ver0 station 0
+287720000ms - Wednesday 7:55:20
+position: 50.700900000000004m N +-0.0144m, -15.5684m E +-0.0428m, 0.0891m D +-0.0786m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c28000000000028462611ce130000e9f9ffff090000003dd4330090000000aa0100000f0300000f0000007492
+ver0 station 0
+287721000ms - Wednesday 7:55:21
+position: 50.706100000000006m N +-0.0144m, -15.5688m E +-0.0426m, 0.09509999999999999m D +-0.0783m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c280000000000104a2611ce130000e9f9ffff0800000014f7280090000000a90100000c0300000f0000004a21
+ver0 station 0
+287722000ms - Wednesday 7:55:22
+position: 50.702000000000005m N +-0.0144m, -15.5653m E +-0.0425m, 0.084m D +-0.078m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c280000000000f84d2611cd130000e9f9ffff0800000055ef24008f000000a80100000a0300000f0000006512
+ver0 station 0
+287723000ms - Wednesday 7:55:23
+position: 50.698499999999996m N +-0.0143m, -15.5661m E +-0.0424m, 0.08360000000000001m D +-0.0778m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c280000000000e0512611cd130000eaf9ffff070000004c9c0c008f000000a7010000070300000f000000d991
+ver0 station 0
+287724000ms - Wednesday 7:55:24
+position: 50.697599999999994m N +-0.0143m, -15.564400000000001m E +-0.0423m, 0.07120000000000001m D +-0.0775m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c280000000000c8552611ce130000eaf9ffff0700000020d063008e000000a5010000050300000f000000202f
+ver0 station 0
+287725000ms - Wednesday 7:55:25
+position: 50.7032m N +-0.0142m, -15.5592m E +-0.0421m, 0.07990000000000001m D +-0.0773m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c280000000000b0592611ce130000ebf9ffff0800000060eb61008e000000a4010000020300000f0000006348
+ver0 station 0
+287726000ms - Wednesday 7:55:26
+position: 50.7096m N +-0.0142m, -15.5465m E +-0.042m, 0.0897m D +-0.077m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c280000000000985d2611cf130000ecf9ffff0800000034c035008e000000a3010000000300000f000000cbdb
+ver0 station 0
+287727000ms - Wednesday 7:55:27
+position: 50.7152m N +-0.0142m, -15.5408m E +-0.0419m, 0.0853m D +-0.0768m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c28000000000080612611ce130000ebf9ffff0600000020f03a008d000000a2010000fd0200000f000000ceba
+ver0 station 0
+287728000ms - Wednesday 7:55:28
+position: 50.7032m N +-0.0141m, -15.546000000000001m E +-0.0418m, 0.0658m D +-0.0765m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c28000000000068652611ce130000eaf9ffff0600000022d561008d000000a1010000fa0200000f000000c38b
+ver0 station 0
+287729000ms - Wednesday 7:55:29
+position: 50.7034m N +-0.0141m, -15.5587m E +-0.0417m, 0.0697m D +-0.0762m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c28000000000050692611cd130000e9f9ffff060000004aa41a008c0000009f010000f80200000f00000058c2
+ver0 station 0
+287730000ms - Wednesday 7:55:30
+position: 50.697399999999995m N +-0.014m, -15.573599999999999m E +-0.0415m, 0.0626m D +-0.076m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c280000000000386d2611ce130000e9f9ffff0700000021ec3e008c0000009e010000f50200000f00000085ae
+ver0 station 0
+287731000ms - Wednesday 7:55:31
+position: 50.703300000000006m N +-0.014m, -15.5664m E +-0.0414m, 0.0762m D +-0.0757m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c28000000000020712611cf130000ebf9ffff0800000009df25008c0000009d010000f20200000f000000338d
+ver0 station 0
+287732000ms - Wednesday 7:55:32
+position: 50.7109m N +-0.014m, -15.5477m E +-0.0413m, 0.0837m D +-0.0754m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c28000000000008752611ce130000ebf9ffff0600000055cb57008b0000009b010000f00200000f0000008129
+ver0 station 0
+287733000ms - Wednesday 7:55:33
+position: 50.7085m N +-0.0139m, -15.5497m E +-0.0411m, 0.0687m D +-0.0752m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c280000000000f0782611ce130000e9f9ffff080000002da30c008b0000009a010000ed0200000f000000cda8
+ver0 station 0
+287734000ms - Wednesday 7:55:34
+position: 50.7045m N +-0.0139m, -15.5737m E +-0.041m, 0.08120000000000001m D +-0.0749m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c280000000000d87c2611ce130000e8f9ffff0600000022e349007900000014010000ec0100000f0000008e3f
+ver0 station 0
+287735000ms - Wednesday 7:55:35
+position: 50.7034m N +-0.0121m, -15.5773m E +-0.0276m, 0.0673m D +-0.0492m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c280000000000c0802611cd130000e8f9ffff0500000039c80e007900000011010000e70100000f000000318c
+ver0 station 0
+287736000ms - Wednesday 7:55:36
+position: 50.695699999999995m N +-0.0121m, -15.58m E +-0.0273m, 0.0514m D +-0.0487m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c280000000000a8842611ce130000e8f9ffff0600000005e539007800000010010000e40100000f0000002ed9
+ver0 station 0
+287737000ms - Wednesday 7:55:37
+position: 50.700500000000005m N +-0.012m, -15.5771m E +-0.0272m, 0.0657m D +-0.0484m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c28000000000090882611ce130000e9f9ffff0700000047a36200780000000f010000e20100000f0000004241
+ver0 station 0
+287738000ms - Wednesday 7:55:38
+position: 50.707100000000004m N +-0.012m, -15.5737m E +-0.0271m, 0.07980000000000001m D +-0.0482m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c280000000000788c2611ce130000e8f9ffff080000005df82300780000000e010000e10100000f00000058ee
+ver0 station 0
+287739000ms - Wednesday 7:55:39
+position: 50.709300000000006m N +-0.012m, -15.575199999999999m E +-0.027m, 0.0835m D +-0.0481m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c28000000000060902611ce130000e7f9ffff0700000021e51900770000000d010000df0100000f000000e5ed
+ver0 station 0
+287740000ms - Wednesday 7:55:40
+position: 50.703300000000006m N +-0.0119m, -15.5871m E +-0.0269m, 0.07250000000000001m D +-0.0479m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c28000000000048942611cd130000e6f9ffff0600000053f14d008800000092010000dc0200000f000000d474
+ver0 station 0
+287741000ms - Wednesday 7:55:41
+position: 50.698299999999996m N +-0.0136m, -15.595899999999999m E +-0.0402m, 0.0677m D +-0.0732m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c28000000000030982611cd130000e6f9ffff0700000041b314008800000091010000d90200000f0000003490
+ver0 station 0
+287742000ms - Wednesday 7:55:42
+position: 50.6965m N +-0.0136m, -15.6021m E +-0.0401m, 0.07200000000000001m D +-0.0729m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c280000000000189c2611ce130000e6f9ffff0700000002ad5e00870000008f010000d70200000f000000217a
+ver0 station 0
+287743000ms - Wednesday 7:55:43
+position: 50.7002m N +-0.0135m, -15.602699999999999m E +-0.0399m, 0.07940000000000001m D +-0.0727m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c28000000000000a02611ce130000e7f9ffff0700000037bd4e00870000008e010000d50200000f00000040da
+ver0 station 0
+287744000ms - Wednesday 7:55:44
+position: 50.7055m N +-0.0135m, -15.591099999999999m E +-0.0398m, 0.07780000000000001m D +-0.0725m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c280000000000e8a32611ce130000e6f9ffff070000001aef1700760000000c010000dd0100000f0000007c6c
+ver0 station 0
+287745000ms - Wednesday 7:55:45
+position: 50.702600000000004m N +-0.0118m, -15.5961m E +-0.0268m, 0.0723m D +-0.0477m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c280000000000d0a72611cd130000e6f9ffff0600000061a03400750000000a010000d80100000f00000073c9
+ver0 station 0
+287746000ms - Wednesday 7:55:46
+position: 50.6997m N +-0.0117m, -15.604m E +-0.0266m, 0.0652m D +-0.0472m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c280000000000b8ab2611ce130000e4f9ffff0700000001e53400860000008b010000cd0200000f000000cc5f
+ver0 station 0
+287747000ms - Wednesday 7:55:47
+position: 50.700100000000006m N +-0.0134m, -15.6171m E +-0.0395m, 0.0752m D +-0.0717m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c280000000000a0af2611cd130000e5f9ffff060000002da35500860000008a010000cb0200000f000000bf2f
+ver0 station 0
+287748000ms - Wednesday 7:55:48
+position: 50.6945m N +-0.0134m, -15.613700000000001m E +-0.0394m, 0.0685m D +-0.0715m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c28000000000088b32611ce130000e4f9ffff070000001ce73c008500000089010000c90200000f000000c241
+ver0 station 0
+287749000ms - Wednesday 7:55:49
+position: 50.7028m N +-0.0133m, -15.616900000000001m E +-0.0393m, 0.07600000000000001m D +-0.0713m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c28000000000070b72611cf130000e6f9ffff090000002dcc22008500000087010000c60200000f0000008a44
+ver0 station 0
+287750000ms - Wednesday 7:55:50
+position: 50.7145m N +-0.0133m, -15.599599999999999m E +-0.0391m, 0.0934m D +-0.071m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c28000000000058bb2611ce130000e6f9ffff070000005fd25b008500000086010000c40200000f000000e160
+ver0 station 0
+287751000ms - Wednesday 7:55:51
+position: 50.709500000000006m N +-0.0133m, -15.598999999999998m E +-0.039m, 0.0791m D +-0.0708m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c28000000000040bf2611ce130000e6f9ffff0700000040bf37008400000085010000c20200000f0000007303
+ver0 station 0
+287752000ms - Wednesday 7:55:52
+position: 50.7064m N +-0.0132m, -15.6009m E +-0.0389m, 0.07550000000000001m D +-0.0706m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c28000000000028c32611cd130000e4f9ffff0500000037d849008400000084010000bf0200000f00000078ee
+ver0 station 0
+287753000ms - Wednesday 7:55:53
+position: 50.695499999999996m N +-0.0132m, -15.618400000000001m E +-0.0388m, 0.057300000000000004m D +-0.0703m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c28000000000010c72611cd130000e6f9ffff0400000013b908008400000083010000bd0200000f000000de6f
+ver0 station 0
+287754000ms - Wednesday 7:55:54
+position: 50.6919m N +-0.0132m, -15.6015m E +-0.0387m, 0.0408m D +-0.0701m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c280000000000f8ca2611cd130000e5f9ffff0400000010a54f008300000082010000bb0200000f000000f476
+ver0 station 0
+287755000ms - Wednesday 7:55:55
+position: 50.6916m N +-0.0131m, -15.6135m E +-0.0386m, 0.0479m D +-0.0699m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c280000000000e0ce2611ce130000e5f9ffff05000000069f54008300000081010000b80200000f000000d3d6
+ver0 station 0
+287756000ms - Wednesday 7:55:56
+position: 50.7006m N +-0.0131m, -15.6141m E +-0.0385m, 0.0584m D +-0.0696m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c280000000000c8d22611ce130000e4f9ffff0700000038ce3d008300000080010000b60200000f00000007c1
+ver0 station 0
+287757000ms - Wednesday 7:55:57
+position: 50.705600000000004m N +-0.0131m, -15.6194m E +-0.0384m, 0.0761m D +-0.0694m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c280000000000b0d62611ce130000e4f9ffff070000001ee24800820000007f010000b40200000f000000f4fb
+ver0 station 0
+287758000ms - Wednesday 7:55:58
+position: 50.703m N +-0.013m, -15.6174m E +-0.0383m, 0.0772m D +-0.0692m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c28000000000098da2611ce130000e5f9ffff0600000007ec2e00820000007e010000b20200000f000000b62d
+ver0 station 0
+287759000ms - Wednesday 7:55:59
+position: 50.700700000000005m N +-0.013m, -15.6064m E +-0.0382m, 0.06459999999999999m D +-0.069m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c28000000000080de2611cd130000e5f9ffff0500000042aa0400820000007c010000af0200000f0000006ab3
+ver0 station 0
+287760000ms - Wednesday 7:56:0
+position: 50.6966m N +-0.013m, -15.613000000000001m E +-0.038m, 0.0504m D +-0.0687m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c28000000000068e22611cd130000e5f9ffff040000002bbc4200810000007b010000ad0200000f0000008a81
+ver0 station 0
+287761000ms - Wednesday 7:56:1
+position: 50.6943m N +-0.0129m, -15.6112m E +-0.0379m, 0.0466m D +-0.0685m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c28000000000050e62611cd130000e5f9ffff0400000029bb1400810000007a010000ab0200000f000000421a
+ver0 station 0
+287762000ms - Wednesday 7:56:2
+position: 50.6941m N +-0.0129m, -15.6113m E +-0.0378m, 0.042m D +-0.0683m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c28000000000038ea2611cd130000e6f9ffff050000005ab95a008100000079010000a90200000f000000a2f8
+ver0 station 0
+287763000ms - Wednesday 7:56:3
+position: 50.699m N +-0.0129m, -15.6015m E +-0.0377m, 0.059000000000000004m D +-0.0681m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c28000000000020ee2611ce130000e5f9ffff0700000036aa04008000000078010000a70200000f0000000333
+ver0 station 0
+287764000ms - Wednesday 7:56:4
+position: 50.705400000000004m N +-0.0128m, -15.613000000000001m E +-0.0376m, 0.0704m D +-0.0679m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c28000000000008f22611ce130000e4f9ffff0700000017f835008000000077010000a40200000f0000004aef
+ver0 station 0
+287765000ms - Wednesday 7:56:5
+position: 50.7023m N +-0.0128m, -15.6152m E +-0.0375m, 0.0753m D +-0.0676m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c280000000000f0f52611ce130000e4f9ffff0600000021d53b008000000076010000a20200000f0000001e5f
+ver0 station 0
+287766000ms - Wednesday 7:56:6
+position: 50.703300000000006m N +-0.0128m, -15.6187m E +-0.0374m, 0.0659m D +-0.0674m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c280000000000d8f92611ce130000e5f9ffff060000000bf80f007f00000075010000a00200000f000000e844
+ver0 station 0
+287767000ms - Wednesday 7:56:7
+position: 50.701100000000004m N +-0.0127m, -15.6052m E +-0.0373m, 0.0615m D +-0.0672m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c280000000000c0fd2611cd130000e4f9ffff0600000063b639007f000000740100009e0200000f0000000f06
+ver0 station 0
+287768000ms - Wednesday 7:56:8
+position: 50.6999m N +-0.0127m, -15.6218m E +-0.0372m, 0.0657m D +-0.067m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c280000000000a8012711cd130000e6f9ffff0400000045ac15007f000000730100009e0200000f000000afb2
+ver0 station 0
+287769000ms - Wednesday 7:56:9
+position: 50.6969m N +-0.0127m, -15.602799999999998m E +-0.0371m, 0.0421m D +-0.067m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c28000000000090052711ce130000e6f9ffff050000002aa44e007e000000720100009a0200000f000000ad28
+ver0 station 0
+287770000ms - Wednesday 7:56:10
+position: 50.7042m N +-0.0126m, -15.603599999999998m E +-0.037m, 0.057800000000000004m D +-0.0666m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c28000000000078092711ce130000e7f9ffff0400000029ee1b007e00000071010000980200000f000000ac10
+ver0 station 0
+287771000ms - Wednesday 7:56:11
+position: 50.704100000000004m N +-0.0126m, -15.5862m E +-0.0369m, 0.0427m D +-0.0664m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c280000000000600d2711ce130000e7f9ffff050000004fb53a007e00000070010000950200000f000000a11b
+ver0 station 0
+287772000ms - Wednesday 7:56:12
+position: 50.7079m N +-0.0126m, -15.591899999999999m E +-0.0368m, 0.0558m D +-0.0661m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c28000000000048112711ce130000e5f9ffff0600000018eb16007d0000006f010000930200000f0000006329
+ver0 station 0
+287773000ms - Wednesday 7:56:13
+position: 50.702400000000004m N +-0.0125m, -15.6065m E +-0.0367m, 0.0622m D +-0.0659m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c28000000000030152711ce130000e6f9ffff0500000005a500007d0000006e010000910200000f000000dd03
+ver0 station 0
+287774000ms - Wednesday 7:56:14
+position: 50.700500000000005m N +-0.0125m, -15.603499999999999m E +-0.0366m, 0.05m D +-0.0657m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c28000000000018192711ce130000e6f9ffff0400000012e442007d0000006d0100008f0200000f0000005350
+ver0 station 0
+287775000ms - Wednesday 7:56:15
+position: 50.701800000000006m N +-0.0125m, -15.597199999999999m E +-0.0365m, 0.0466m D +-0.0655m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c280000000000001d2711ce130000e6f9ffff050000003bdb06007c0000006c0100008d0200000f00000020b9
+ver0 station 0
+287776000ms - Wednesday 7:56:16
+position: 50.7059m N +-0.0124m, -15.598099999999999m E +-0.0364m, 0.050600000000000006m D +-0.0653m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c280000000000e8202711ce130000e5f9ffff0500000020e134007c0000006b0100008b0200000f000000201c
+ver0 station 0
+287777000ms - Wednesday 7:56:17
+position: 50.7032m N +-0.0124m, -15.6075m E +-0.0363m, 0.0552m D +-0.0651m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c280000000000d0242711ce130000e5f9ffff0500000027e601007c0000006a010000890200000f000000e281
+ver0 station 0
+287778000ms - Wednesday 7:56:18
+position: 50.703900000000004m N +-0.0124m, -15.607000000000001m E +-0.0362m, 0.050100000000000006m D +-0.0649m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c280000000000b8282711ce130000e3f9ffff060000001bf855007b00000069010000870200000f00000023af
+ver0 station 0
+287779000ms - Wednesday 7:56:19
+position: 50.7027m N +-0.0123m, -15.6252m E +-0.0361m, 0.0685m D +-0.0647m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c280000000000a02c2711ce130000e3f9ffff0800000042a13b007b00000068010000850200000f000000c4b2
+ver0 station 0
+287780000ms - Wednesday 7:56:20
+position: 50.7066m N +-0.0123m, -15.6339m E +-0.036m, 0.0859m D +-0.0645m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c28000000000088302711ce130000e2f9ffff0800000045e51c007b00000067010000830200000f000000d4c0
+ver0 station 0
+287781000ms - Wednesday 7:56:21
+position: 50.706900000000005m N +-0.0123m, -15.6371m E +-0.0359m, 0.0828m D +-0.0643m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c28000000000070342711ce130000e4f9ffff0600000037b136007a00000066010000810200000f00000094a8
+ver0 station 0
+287782000ms - Wednesday 7:56:22
+position: 50.7055m N +-0.0122m, -15.622300000000001m E +-0.0358m, 0.0654m D +-0.0641m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c28000000000058382711ce130000e4f9ffff0500000015bc41007a000000650100007f0200000f000000708f
+ver0 station 0
+287783000ms - Wednesday 7:56:23
+position: 50.7021m N +-0.0122m, -15.6212m E +-0.0357m, 0.0565m D +-0.0639m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c280000000000403c2711ce130000e5f9ffff040000000dd901007a000000640100007d0200000f0000002eaa
+ver0 station 0
+287784000ms - Wednesday 7:56:24
+position: 50.7013m N +-0.0122m, -15.608300000000002m E +-0.0356m, 0.040100000000000004m D +-0.0637m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c28000000000028402711ce130000e6f9ffff030000000cb22a007a000000630100007b0200000f00000018a7
+ver0 station 0
+287785000ms - Wednesday 7:56:25
+position: 50.7012m N +-0.0122m, -15.6022m E +-0.0355m, 0.0342m D +-0.0635m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c28000000000010442711ce130000e4f9ffff0500000033f40a007a000000620100007b0200000f0000004c71
+ver0 station 0
+287786000ms - Wednesday 7:56:26
+position: 50.7051m N +-0.0122m, -15.6156m E +-0.0354m, 0.051000000000000004m D +-0.0635m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c280000000000f8472711ce130000e5f9ffff0400000029f107007900000061010000770200000f000000210b
+ver0 station 0
+287787000ms - Wednesday 7:56:27
+position: 50.704100000000004m N +-0.0121m, -15.6059m E +-0.0353m, 0.0407m D +-0.0631m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c280000000000e04b2711ce130000e4f9ffff0500000015c808007900000060010000750200000f000000ce8e
+ver0 station 0
+287788000ms - Wednesday 7:56:28
+position: 50.7021m N +-0.0121m, -15.620000000000001m E +-0.0352m, 0.050800000000000005m D +-0.0629m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c280000000000c84f2711ce130000e4f9ffff0600000056d10f00780000005f010000730200000f00000008e3
+ver0 station 0
+287789000ms - Wednesday 7:56:29
+position: 50.708600000000004m N +-0.012m, -15.619100000000001m E +-0.0351m, 0.0615m D +-0.0627m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c280000000000b0532711cf130000e5f9ffff0500000007ce3e00780000005e010000710200000f000000cf00
+ver0 station 0
+287790000ms - Wednesday 7:56:30
+position: 50.7107m N +-0.012m, -15.6094m E +-0.035m, 0.0562m D +-0.0625m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c28000000000098572711cf130000e6f9ffff050000001fe90d00780000005e010000710200000f000000beb7
+ver0 station 0
+287791000ms - Wednesday 7:56:31
+position: 50.713100000000004m N +-0.012m, -15.596699999999998m E +-0.035m, 0.051300000000000005m D +-0.0625m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c280000000000805b2711ce130000e6f9ffff0400000054e80400780000005d0100006d0200000f000000ceee
+ver0 station 0
+287792000ms - Wednesday 7:56:32
+position: 50.708400000000005m N +-0.012m, -15.5968m E +-0.0349m, 0.0404m D +-0.0621m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c280000000000685f2711ce130000e6f9ffff030000002db92400770000005c0100006c0200000f0000008095
+ver0 station 0
+287793000ms - Wednesday 7:56:33
+position: 50.7045m N +-0.0119m, -15.6015m E +-0.0348m, 0.0336m D +-0.062m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c28000000000050632711ce130000e5f9ffff020000000cbd5b00770000005b0100006a0200000f0000008107
+ver0 station 0
+287794000ms - Wednesday 7:56:34
+position: 50.7012m N +-0.0119m, -15.6111m E +-0.0347m, 0.0291m D +-0.0618m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c28000000000038672711cd130000e5f9ffff010000005efa1800770000005a0100006a0200000f000000b628
+ver0 station 0
+287795000ms - Wednesday 7:56:35
+position: 50.6994m N +-0.0119m, -15.605m E +-0.0346m, 0.0124m D +-0.0618m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c280000000000206b2711cd130000e6f9ffff0000000020a92c007700000059010000680200000f00000024c9
+ver0 station 0
+287796000ms - Wednesday 7:56:36
+position: 50.6932m N +-0.0119m, -15.6031m E +-0.0345m, 0.0044m D +-0.0616m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c280000000000086f2711cd130000e4f9ffff020000004bcc1b007700000058010000660200000f0000004a94
+ver0 station 0
+287797000ms - Wednesday 7:56:37
+position: 50.6975m N +-0.0119m, -15.6196m E +-0.0344m, 0.0227m D +-0.0614m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c280000000000f0722711ce130000e4f9ffff0300000016c149007700000058010000650200000f0000002414
+ver0 station 0
+287798000ms - Wednesday 7:56:38
+position: 50.702200000000005m N +-0.0119m, -15.620700000000001m E +-0.0344m, 0.0373m D +-0.0613m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c280000000000d8762711cd130000e4f9ffff0100000030f45c007600000057010000630200000f00000069eb
+ver0 station 0
+287799000ms - Wednesday 7:56:39
+position: 50.6948m N +-0.0118m, -15.6156m E +-0.0343m, 0.019200000000000002m D +-0.0611m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c280000000000c07a2711ce130000e4f9ffff0100000000c264007600000056010000610200000f000000f935
+ver0 station 0
+287800000ms - Wednesday 7:56:40
+position: 50.7m N +-0.0118m, -15.620600000000001m E +-0.0342m, 0.02m D +-0.0609m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c280000000000a87e2711cd130000e4f9ffff0000000048e339007600000055010000600200000f0000001f22
+ver0 station 0
+287801000ms - Wednesday 7:56:41
+position: 50.697199999999995m N +-0.0118m, -15.6173m E +-0.0341m, 0.0057m D +-0.0608m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c28000000000090822711cd130000e4f9ffff000000003fe8f70076000000540100005e0200000f000000c239
+ver0 station 0
+287802000ms - Wednesday 7:56:42
+position: 50.6963m N +-0.0118m, -15.616800000000001m E +-0.034m, 0.0247m D +-0.0606m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c28000000000078862711cd130000e3f9ffff010000001ebc5c0075000000540100005c0200000f000000c383
+ver0 station 0
+287803000ms - Wednesday 7:56:43
+position: 50.693m N +-0.0117m, -15.6312m E +-0.034m, 0.019200000000000002m D +-0.0604m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c280000000000608a2711cd130000e2f9ffff0100000045c64b0075000000530100005a0200000f000000cb0f
+ver0 station 0
+287804000ms - Wednesday 7:56:44
+position: 50.6969m N +-0.0117m, -15.6402m E +-0.0339m, 0.0175m D +-0.0602m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c280000000000488e2711cd130000e2f9ffff0200000031f92f007500000052010000590200000f000000b980
+ver0 station 0
+287805000ms - Wednesday 7:56:45
+position: 50.6949m N +-0.0117m, -15.6351m E +-0.0338m, 0.0247m D +-0.0601m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c28000000000030922711cd130000e2f9ffff0300000057b206007500000051010000570200000f0000005979
+ver0 station 0
+287806000ms - Wednesday 7:56:46
+position: 50.698699999999995m N +-0.0117m, -15.6422m E +-0.0337m, 0.0306m D +-0.0599m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c28000000000018962711ce130000e2f9ffff050000005a9d29007400000050010000550200000f00000055ec
+ver0 station 0
+287807000ms - Wednesday 7:56:47
+position: 50.709m N +-0.0116m, -15.6443m E +-0.0336m, 0.0541m D +-0.0597m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c280000000000009a2711ce130000e5f9ffff0000000024b016007400000050010000540200000f00000008c7
+ver0 station 0
+287808000ms - Wednesday 7:56:48
+position: 50.7036m N +-0.0116m, -15.612400000000001m E +-0.0336m, 0.0022m D +-0.0596m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c280000000000e89d2711cd130000e2f9ffff0200000029e65700bd000000760100005c0300000f000000e523
+ver0 station 0
+287809000ms - Wednesday 7:56:49
+position: 50.6941m N +-0.0189m, -15.637m E +-0.0374m, 0.0287m D +-0.086m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c280000000000d0a12711cd130000e2f9ffff0100000022a82c007d00000053010000730200000f0000001318
+ver0 station 0
+287810000ms - Wednesday 7:56:50
+position: 50.6934m N +-0.0125m, -15.6432m E +-0.0339m, 0.0144m D +-0.0627m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c280000000000b8a52711ce130000e3f9ffff010000000fa66400770000004f0100005c0200000f0000000386
+ver0 station 0
+287811000ms - Wednesday 7:56:51
+position: 50.7015m N +-0.0119m, -15.6334m E +-0.0335m, 0.02m D +-0.0604m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c280000000000a0a92711cd130000e3f9ffff0000000045e05600750000004e010000550200000f00000045a0
+ver0 station 0
+287812000ms - Wednesday 7:56:52
+position: 50.6969m N +-0.0117m, -15.627600000000001m E +-0.0334m, 0.0086m D +-0.0597m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c28000000000088ad2711cd130000e4f9ffff000000005bbd1800750000004e010000540200000f000000e6a3
+ver0 station 0
+287813000ms - Wednesday 7:56:53
+position: 50.699099999999994m N +-0.0117m, -15.6211m E +-0.0334m, 0.0024m D +-0.0596m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c28000000000070b12711cd130000e4f9ffff000000004a9f3100750000004d010000520200000f000000b9e7
+ver0 station 0
+287814000ms - Wednesday 7:56:54
+position: 50.697399999999995m N +-0.0117m, -15.6241m E +-0.0333m, 0.0049m D +-0.0594m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c28000000000058b52711cd130000e4f9ffffffffffff08f1b400750000004c010000510200000f00000032c9
+ver0 station 0
+287815000ms - Wednesday 7:56:55
+position: 50.690799999999996m N +-0.0117m, -15.6159m E +-0.0332m, 0.007999999999999998m D +-0.0593m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c28000000000040b92711cd130000e3f9ffff000000002e9e5100740000004c0100004f0200000f0000008eec
+ver0 station 0
+287816000ms - Wednesday 7:56:56
+position: 50.6946m N +-0.0116m, -15.6342m E +-0.0332m, 0.0081m D +-0.0591m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c28000000000028bd2711cd130000e3f9ffff000000003feafb00740000004b0100004e0200000f0000007ff0
+ver0 station 0
+287817000ms - Wednesday 7:56:57
+position: 50.6963m N +-0.0116m, -15.6266m E +-0.0331m, 0.0251m D +-0.059m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c28000000000010c12711cf130000e2f9ffff060000003bb53d00bd00000071010000540300000f000000f1c4
+ver0 station 0
+287818000ms - Wednesday 7:56:58
+position: 50.7159m N +-0.0189m, -15.6419m E +-0.0369m, 0.06609999999999999m D +-0.0852m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c280000000000f8c42711ce130000e3f9ffff050000004bcf0400bc00000071010000510300000f000000c8b5
+ver0 station 0
+287819000ms - Wednesday 7:56:59
+position: 50.7075m N +-0.0188m, -15.6293m E +-0.0369m, 0.0504m D +-0.0849m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c280000000000e0c82711cd130000e5f9ffff00000000179fbb00bb000000700100004f0300000f000000ff93
+ver0 station 0
+287820000ms - Wednesday 7:57:0
+position: 50.692299999999996m N +-0.0187m, -15.6141m E +-0.0368m, 0.0187m D +-0.0847m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c280000000000c8cc2711ce130000e2f9ffff0300000002fe0500760000004b010000520200000f0000001875
+ver0 station 0
+287821000ms - Wednesday 7:57:1
+position: 50.7002m N +-0.0118m, -15.6346m E +-0.0331m, 0.0305m D +-0.0594m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c280000000000b0d02711cd130000e4f9ffff0000000038c9f000750000004a0100004d0200000f000000e7fc
+ver0 station 0
+287822000ms - Wednesday 7:57:2
+position: 50.6956m N +-0.0117m, -15.619900000000001m E +-0.033m, 0.024m D +-0.0589m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c28000000000080d82711cd130000e5f9ffff0000000061f8eb007300000048010000460200000f0000000857
+ver0 station 0
+287824000ms - Wednesday 7:57:4
+position: 50.6997m N +-0.0115m, -15.6052m E +-0.0328m, 0.0235m D +-0.0582m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c28000000000068dc2711cd130000e6f9ffffffffffff32f7c6007300000048010000450200000f0000009be4
+ver0 station 0
+287825000ms - Wednesday 7:57:5
+position: 50.695m N +-0.0115m, -15.5953m E +-0.0328m, 0.009800000000000001m D +-0.0581m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c28000000000050e02711cd130000e4f9ffff0000000030c714007300000047010000430200000f000000a2da
+ver0 station 0
+287826000ms - Wednesday 7:57:6
+position: 50.6948m N +-0.0115m, -15.6201m E +-0.0327m, 0.002m D +-0.0579m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c28000000000038e42711cd130000e3f9ffff0000000036af3d007200000047010000420200000f000000a264
+ver0 station 0
+287827000ms - Wednesday 7:57:7
+position: 50.6954m N +-0.0114m, -15.6325m E +-0.0327m, 0.0061m D +-0.0578m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c28000000000020e82711cd130000e3f9ffff0100000047d302007200000046010000410200000f000000876e
+ver0 station 0
+287828000ms - Wednesday 7:57:8
+position: 50.6971m N +-0.0114m, -15.6289m E +-0.0326m, 0.0102m D +-0.0577m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+UBX-NAV-RELPOSNED b562013c28000000000008ec2711cd130000e4f9ffff0200000048b74d007300000046010000420200000f000000a72c
+ver0 station 0
+287829000ms - Wednesday 7:57:9
+position: 50.697199999999995m N +-0.0115m, -15.6217m E +-0.0326m, 0.027700000000000002m D +-0.0578m
+gnssOk? True diffSoln? True relPosValid? True
+carrSoln: float
+isMoving? False extrapRefPos? False extrapRebObs? False
+^CTraceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/home/pi/capstone/SystemCode/gimbalUnit.py", line 61, in <module>
+    rover_rtk_test.pollRelativePostion(ublox)
+  File "/home/pi/capstone/SystemCode/rover_rtk_test.py", line 42, in pollRelativePostion
+    read_msgs(ublox)
+  File "/home/pi/capstone/SystemCode/rover_rtk_test.py", line 23, in read_msgs
+    time.sleep(1)
+KeyboardInterrupt
+>>> 

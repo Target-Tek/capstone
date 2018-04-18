@@ -8,6 +8,10 @@ import serial
 import binascii
 import ctypes
 
+
+#NAV_HPPOSLLH_Test = 'b5620114240000000000b0c2890895ad73bd610afd1762611500baaa1500160401fd8d000000640000008779'
+
+
 #calculates the UBX checksum over payload.
 # and returns that checkSum as two bytes in
 # a bytearray
@@ -127,9 +131,9 @@ def parseUbxNavHPPOSLLH(ubxMsg):
             timeOfWeek.getFullString() + "\n" +\
             "\tLat: " + str(latitudeDeg) +\
             "\tLong: "+ str(longitudeDeg) +\
-            "\tAlt: " + str(heightM) + +\
-            "\tHeight Above mean sea level: " + str(heightMSLM) + '\n'+\
-            "horizontal Accuracy: " + str(horizAcc) + '\n' +\
+            "\tAlt: " + str(heightM) + '\n'+\
+            "\tHeight Above mean sea level: " + str(heightMSLM) + "\n"+\
+            "horizontal Accuracy: " + str(horizAcc) + "\n" +\
             "vertical Accuracy: " + str(vertAcc)
     
 def parseUbxNavDGPS(ubxMsg):
@@ -376,7 +380,8 @@ surveyInState = SurveyInStatus(-1, -1, -1, -1, -1, -1, -1, -1, -1, -1)
 #CFGPRT_msg = UBX_appendChecksum(CFGPRT_msg)
 #print (CFGPRT_msg)
 #print (parseUbxMsg(CFGPRT_msg))
-#UBX_NAV_SVN_msg =  bytes.fromhex('b562 013b 2800 00 000000 87654321 0000000000000000000000000000000000000000000000000000000000000000778e')
+#UBX_NAV_HPPOSLLH_msg =  bytes.fromhex(NAV_HPPOSLLH_Test)
+#print(parseUbxMsg(UBX_NAV_HPPOSLLH_msg))
 #UBX_config_prt = bytes.fromhex('B5620600140001000000C0080000004B000000002000000000004ECD')
 #print(parseUbxMsg(UBX_NAV_SVN_msg))
 #i = 0

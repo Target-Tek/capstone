@@ -3,9 +3,11 @@ from sys import platform
 import rover_rtk_test
 import accelerometer
 import gimbal_keyboard_read
+from time import sleep
 from rover_rtk_test import pollRelativePostion
 from reading import RelPosNED, HpPosLLH
-from coordmath import getAzElFromDiff, CreateLLA, CreateAngles
+from coordmath import getAzElFromDiff, CreateLLA, CreateAngles, AzEl
+import RPi.GPIO as GPIO # Used for GPIO and driving the stepper 
 #from rover_rtk_test import rover
 #from email.mime import base
 
@@ -70,9 +72,9 @@ print('relative position of ')
 gimbalToRemote = [-x for x in diffVec]
 print(gimbalToRemote)    
     # Calculate Azimuth and Elevation Angle
-AzEl = getAzElFromDiff(gimbalToRemote[0], gimbalToRemote[1], gimbalToRemote[2])
+AzElList = getAzElFromDiff(gimbalToRemote[0], gimbalToRemote[1], gimbalToRemote[2])
 print('Azimuth and Elevation angles of')
-print(AzEl)
+print(AzElList)
 print('Correlated with heading and pitch of')
     #TODO PRINT PITCH AND HEADING should come from Encoders?
 PiHe = acc.offset()
@@ -87,9 +89,9 @@ while (changePoint):
         while not finishGPSEntry:
             proceed = False
             while not proceed:
-                print('Enter Target GPS coordinate in Degrees, Degrees, and Feet (separated by commas)')
+                print('Enter Target GPS coordinate in Degrees, Degrees, and Feet (separated by tabs)')
                 response = input('Target Coordinates: ')
-                targetCoors = [x.strip() for x in response.split(',')]
+                targetCoors = [x.strip() for x in response.split('\t')]
                 if (len(targetCoors) >= 3) :
                     repeat = True
                     while repeat:
@@ -108,13 +110,15 @@ while (changePoint):
             print('Current Station GPS location calculated as ')
             print(HpPosLLH.getMostRecent().getLLA())
             baseCoors = HpPosLLH.getMostRecent().getLLA()
+            baseCoors[2] = float(baseCoors[2])*3.28084 #convert meters to feet
+            baseLLA = CreateLLA(baseCoors[0], baseCoors[1], baseCoors[2])
             response = input('Enter Station coordinate? (1.Yes,  2. No)')
             if (str(response).lower()[0] == '1'):
                 proceed = False
                 while not proceed:
-                    print('Enter Station GPS coordinate in Degrees, Degrees, and Feet (separated by commas)')
+                    print('Enter Station GPS coordinate in Degrees, Degrees, and Feet (separated by tabs)')
                     response = input('Station Coordinates: ')
-                    baseCoors = [x.strip() for x in response.split(',')]
+                    baseCoors = [x.strip() for x in response.split('\t')]
                     if (len(baseCoors) >= 3) :
                         repeat = True
                         while repeat:
@@ -142,15 +146,15 @@ while (changePoint):
                     repeat = False
             
         #Calculate the absolute and delta Az El (Range?)
-        roPiHe = CreateAngles(0, PiHe[0], PiHe[1]) #TODO, replace with actual roll Pitch and heading vals.
+        roPiHe = CreateAngles(0, AzElList[1], AzElList[0]) #TODO, replace with actual roll Pitch and heading vals.
         #Report these data and the necessary rotations to point
         solution = AzEl(baseLLA,roPiHe,targetLLA)
         repeat = True
         while (repeat):
-            print('Pitch: ' + PiHe[0])
-            print('Heading: ' + PiHe[1])
-            print('Elevation' + AzEl[0])
-            print('Azimuth: ' + AzEl[1])
+            print('Pitch: ' + str(PiHe[0]))
+            print('Heading: ' + str(PiHe[1]))
+            print('Elevation' + str(AzElList[1]))
+            print('Azimuth: ' + str(AzElList[0]))
             print('By Rotating on Pitch and on Heading')
             solution.displaySol()
             response = input('Proceed with Pointing? (1.Yes,  2. No)')
@@ -165,6 +169,10 @@ while (changePoint):
     #TODO: Pointing code (code that takes the offsets as calculated by Palmer's math code, and rotates those number of degrees on az and el.A
 
     acc.self_level() # Level the accelerometer.
+    sleep(.5)
+    acc.self_level()
+    sleep(.5)
+    acc.self_level()
 
     delay1 = .0005
     delay2 = .00001
@@ -185,45 +193,57 @@ while (changePoint):
     Az_steps2 = min(Az_steps-1000, 1000)
     Az_steps3 = Az_steps - Az_steps1 - Az_steps2
 
+    # Fix it so it rotates CW and CCW intelligently
+    if El_steps > 100000:
+        El_steps = El_steps - 200000
+    if Az_steps > 100000:
+        Az_steps = Az_steps - 200000
+
     # Ramp code for rotating gimbal to target.
+    if Az_steps > 0:
+        GPIO.output(DIR,cw)
+    else:
+        GPIO.output(DIR,ccw)
+    if El_steps > 0:
+    	GPIO.output(DIR2,cw)
+    else:
+        GPIO.output(DIR2,ccw)
+    print("Az steps")
+    print(Az_steps)
+    print("Rel Az")
+    print(solution.getRelAz())
 
-    for x in range(Az_steps1):
-    	GPIO.output(DIR,ccw)
+    for x in range(int(abs(Az_steps))):
     	GPIO.output(STEP,GPIO.HIGH)
     	sleep(delay1)
     	GPIO.output(STEP,GPIO.LOW)
     	sleep(delay1)
-    for x in range(Az_steps2):
-    	GPIO.output(DIR,ccw)
+    """for x in range(int(Az_steps2)):
     	GPIO.output(STEP,GPIO.HIGH)
     	sleep(delay2)
     	GPIO.output(STEP,GPIO.LOW)
     	sleep(delay2)
-    for x in range(Az_steps3):
-    	GPIO.output(DIR,ccw)
+    for x in range(int(Az_steps3)):
     	GPIO.output(STEP,GPIO.HIGH)
     	sleep(delay3)
     	GPIO.output(STEP,GPIO.LOW)
-    	sleep(delay3)
+    	sleep(delay3)"""
 
-    for x in range(El_steps1):
-    	GPIO.output(DIR2,ccw)
+    for x in range(int(abs(El_steps))):
     	GPIO.output(STEP2,GPIO.HIGH)
     	sleep(delay1)
     	GPIO.output(STEP2,GPIO.LOW)
     	sleep(delay1)
-    for x in range(El_steps2):
-    	GPIO.output(DIR2,ccw)
+    """for x in range(int(El_steps2)):
     	GPIO.output(STEP2,GPIO.HIGH)
     	sleep(delay2)
     	GPIO.output(STEP2,GPIO.LOW)
     	sleep(delay2)
-    for x in range(El_steps3):
-    	GPIO.output(DIR2,ccw)
+    for x in range(int(El_steps3)):
     	GPIO.output(STEP2,GPIO.HIGH)
     	sleep(delay3)
     	GPIO.output(STEP2,GPIO.LOW)
-    	sleep(delay3)
+    	sleep(delay3)"""
 
     #Prompt to change target coordinate.
     repeat = True

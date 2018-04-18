@@ -43,25 +43,26 @@ if __name__ == '__main__':
 	#=====================================================
 def getAzElFromDiff(North, East, Down):
 	initAngle = atan2(North, East)
+	initAngle = pi / 2 - initAngle
 	if (initAngle < 0):
-		initAngle = initAngle + pi;
+		initAngle = initAngle + 2 * pi;
 	az = (initAngle * 180 / pi)
-	flatMag = sqrt(North * North + East * East)
+	flatMag = sqrt(North * North + East * East) - 1e-10 #prevent divide by zero
 	el = -atan(Down / flatMag) * 180 / pi
 	return [az, el]
 	
 #================for testing purposes=================
 class CreateLLA:
 	def __init__(self,lat, lon, alt):
-		self.lat = lat
-		self.lon = lon
-		self.alt = alt
+		self.lat = float(lat)
+		self.lon = float(lon)
+		self.alt = float(alt)
 
 class CreateAngles:
 	def __init__(self,roll, pitch, heading):
-		self.roll = roll
-		self.pitch = pitch
-		self.heading = heading
+		self.roll = float(roll)
+		self.pitch = float(pitch)
+		self.heading = float(heading)
 #====================================================
 
 class Angles:
@@ -83,11 +84,15 @@ class Angles:
 		print(self.pitchR)
 		print(self.headingR)
 
+
+
 class LLA:
 	def __init__(self,llacoords):
 		self.latD = llacoords.lat
 		self.lonD = llacoords.lon
 		self.altFt = llacoords.alt
+		print("LLA type:")
+		print(type(llacoords.lat))
 		self.latR = llacoords.lat*pi/180
 		self.lonR = llacoords.lon*pi/180
 		self.altM = llacoords.alt*.3048
@@ -173,7 +178,7 @@ class Solution:
 		for x in range(len(LLvector.LLmatrix)):
 			total = total + LLvector.LLmatrix[x,0]**2
 		self.rangeNmi = sqrt(total)/1852
-		self.range = self.range*6076.11549
+		self.range = self.rangeNmi*6076.11549 #Conversion from Nautical Miles to Feet
 		if (atan2(LLvector.yLL,LLvector.xLL)*180/pi) < 0:
 			self.trueAz = atan2(LLvector.yLL,LLvector.xLL)*180/pi+360
 		else:
@@ -202,10 +207,10 @@ class Solution:
 		return self.trueEl
 
 	def getRelAz(self):
-		return self.trueAz
+		return self.relAz
 
 	def getRelEl(self):
-		return self.RelEl
+		return self.relEl
 
 class AzEl:
 	def __init__(self, pedestal, angles, target):
@@ -262,3 +267,4 @@ if __name__ == '__main__':
 	solTEST.displaySol()
 	#====================================================
 	print('------------Ending script------------')
+#temp = LLA(CreateLLA(1.0, 2.9, 3.0))

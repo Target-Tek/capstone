@@ -66,7 +66,7 @@ def main(stdscr):
             stdscr.addstr("I want to move right")
             #pi.write(DIR, True)
             for x in range(steps):
-                GPIO.output(DIR,ccw)
+                GPIO.output(DIR,cw)
                 GPIO.output(STEP,GPIO.HIGH)
                 sleep(delay)
                 GPIO.output(STEP,GPIO.LOW)
@@ -89,7 +89,7 @@ def main(stdscr):
             stdscr.addstr("I want to move left")
             #pi.write(DIR, False)
             for x in range(steps):
-                GPIO.output(DIR,cw)
+                GPIO.output(DIR,ccw)
                 GPIO.output(STEP,GPIO.HIGH)
                 sleep(delay)
                 GPIO.output(STEP,GPIO.LOW)
